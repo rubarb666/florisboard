@@ -1,0 +1,112 @@
+<resources>
+    <!-- Preference group: Advanced -->
+    <string name="pref__advanced__settings_theme" translatable="false">advanced__settings_theme</string>
+    <string name="pref__advanced__show_app_icon" translatable="false">advanced__show_app_icon</string>
+    <string name="pref__advanced__force_private_mode" translatable="false">advanced__force_private_mode</string>
+
+    <!-- Preference group: Clipboard -->
+    <string name="pref__clipboard__clean_up_after" translatable="false">clipboard__clean_up_after</string>
+    <string name="pref__clipboard__clean_up_old" translatable="false">clipboard__clean_up_old</string>
+    <string name="pref__clipboard__enable_history" translatable="false">clipboard__enable_history</string>
+    <string name="pref__clipboard__enable_internal" translatable="false">clipboard__enable_internal</string>
+    <string name="pref__clipboard__limit_history_size" translatable="false">clipboard__limit_history_size</string>
+    <string name="pref__clipboard__max_history_size" translatable="false">clipboard__max_history_size</string>
+    <string name="pref__clipboard__sync_to_system" translatable="false">clipboard__sync_to_system</string>
+    <string name="pref__clipboard__sync_to_floris" translatable="false">clipboard__sync_to_floris</string>
+
+    <!-- Preference group: Correction -->
+    <string name="pref__correction__auto_capitalization" translatable="false">correction__auto_capitalization</string>
+    <string name="pref__correction__double_space_period" translatable="false">correction__double_space_period</string>
+    <string name="pref__correction__remember_caps_lock_state" translatable="false">correction__remember_caps_lock_state</string>
+
+    <!-- Preference group: Devtools -->
+    <string name="pref__devtools__enabled" translatable="false">devtools__enabled</string>
+    <string name="pref__devtools__show_heap_memory_stats" translatable="false">devtools__show_heap_memory_stats</string>
+    <string name="pref__devtools__clear_udm_internal_database" translatable="false">devtools__clear_udm_internal_database</string>
+
+    <!-- Preference group: Dictionary -->
+    <string name="pref__suggestion__enable_system_user_dictionary" translatable="false">suggestion__enable_system_user_dictionary</string>
+    <string name="pref__suggestion__manage_system_user_dictionary" translatable="false">suggestion__manage_system_user_dictionary</string>
+    <string name="pref__suggestion__enable_floris_user_dictionary" translatable="false">suggestion__enable_floris_user_dictionary</string>
+    <string name="pref__suggestion__manage_floris_user_dictionary" translatable="false">suggestion__manage_floris_user_dictionary</string>
+
+    <!-- Preference group: Gestures -->
+    <string name="pref__gestures__swipe_up" translatable="false">gestures__swipe_up</string>
+    <string name="pref__gestures__swipe_down" translatable="false">gestures__swipe_down</string>
+    <string name="pref__gestures__swipe_left" translatable="false">gestures__swipe_left</string>
+    <string name="pref__gestures__swipe_right" translatable="false">gestures__swipe_right</string>
+    <string name="pref__gestures__space_bar_long_press" translatable="false">gestures__space_bar_long_press</string>
+    <string name="pref__gestures__space_bar_swipe_left" translatable="false">gestures__space_bar_swipe_left</string>
+    <string name="pref__gestures__space_bar_swipe_right" translatable="false">gestures__space_bar_swipe_right</string>
+    <string name="pref__gestures__space_bar_swipe_up" translatable="false">gestures__space_bar_swipe_up</string>
+    <string name="pref__gestures__delete_key_swipe_left" translatable="false">gestures__delete_key_swipe_left</string>
+    <string name="pref__gestures__swipe_velocity_threshold" translatable="false">gestures__swipe_velocity_threshold</string>
+    <string name="pref__gestures__swipe_distance_threshold" translatable="false">gestures__swipe_distance_threshold</string>
+
+    <!-- Preference group: Glide -->
+    <string name="pref__glide__enabled" translatable="false">glide__enabled</string>
+    <string name="pref__glide__preview_refresh_delay" translatable="false">glide__preview_refresh_delay</string>
+    <string name="pref__glide__show_preview" translatable="false">glide__show_preview</string>
+    <string name="pref__glide__show_trail" translatable="false">glide__show_trail</string>
+    <string name="pref__glide__trail_fade_duration" translatable="false">glide__trail_fade_duration</string>
+    <string name="pref__glide__trail_max_length" translatable="false">glide__trail_max_length</string>
+
+    <!-- Preference group: Internal -->
+    <string name="pref__internal__is_ime_set_up" translatable="false">internal__is_ime_set_up</string>
+    <string name="pref__internal__version_on_install" translatable="false">internal__version_on_install</string>
+    <string name="pref__internal__version_last_use" translatable="false">internal__version_last_use</string>
+    <string name="pref__internal__version_last_changelog" translatable="false">internal__version_last_changelog</string>
+
+    <!-- Preference group: Keyboard -->
+    <string name="pref__keyboard__bottom_offset_portrait" translatable="false">keyboard__bottom_offset_portrait</string>
+    <string name="pref__keyboard__bottom_offset_landscape" translatable="false">keyboard__bottom_offset_landscape</string>
+    <string name="pref__keyboard__font_size_multiplier_portrait" translatable="false">keyboard__font_size_multiplier_portrait</string>
+    <string name="pref__keyboard__font_size_multiplier_landscape" translatable="false">keyboard__font_size_multiplier_landscape</string>
+    <string name="pref__keyboard__height_factor" translatable="false">keyboard__height_factor</string>
+    <string name="pref__keyboard__height_factor_custom" translatable="false">keyboard__height_factor_custom</string>
+    <string name="pref__keyboard__hinted_number_row_mode" translatable="false">keyboard__hinted_number_row_mode</string>
+    <string name="pref__keyboard__hinted_symbols_mode" translatable="false">keyboard__hinted_symbols_mode</string>
+    <string name="pref__keyboard__key_spacing_horizontal" translatable="false">keyboard__key_spacing_horizontal</string>
+    <string name="pref__keyboard__key_spacing_vertical" translatable="false">keyboard__key_spacing_vertical</string>
+    <string name="pref__keyboard__landscape_input_ui_mode" translatable="false">keyboard__landscape_input_ui_mode</string>
+    <string name="pref__keyboard__long_press_delay" translatable="false">keyboard__long_press_delay</string>
+    <string name="pref__keyboard__merge_hint_popups_enabled" translatable="false">keyboard__merge_hint_popups_enabled</string>
+    <string name="pref__keyboard__number_row" translatable="false">keyboard__number_row</string>
+    <string name="pref__keyboard__one_handed_mode" translatable="false">keyboard__one_handed_mode</string>
+    <string name="pref__keyboard__one_handed_mode_scale_factor" translatable="false">keyboard__one_handed_mode_scale_factor</string>
+    <string name="pref__keyboard__popup_enabled" translatable="false">keyboard__popup_enabled</string>
+    <string name="pref__keyboard__sound_enabled" translatable="false">keyboard__sound_enabled</string>
+    <string name="pref__keyboard__sound_volume" translatable="false">keyboard__sound_volume</string>
+    <string name="pref__keyboard__space_bar_switches_to_characters" translatable="false">keyboard__space_bar_switches_to_characters</string>
+    <string name="pref__keyboard__utility_key_action" translatable="false">keyboard__utility_key_action</string>
+    <string name="pref__keyboard__utility_key_enabled" translatable="false">keyboard__utility_key_enabled</string>
+    <string name="pref__keyboard__vibration_enabled" translatable="false">keyboard__vibration_enabled</string>
+    <string name="pref__keyboard__vibration_duration" translatable="false">keyboard__vibration_duration</string>
+    <string name="pref__keyboard__vibration_strength" translatable="false">keyboard__vibration_strength</string>
+
+    <!-- Preference group: Localization -->
+    <string name="pref__localization__active_subtype_id" translatable="false">localization__active_subtype_id</string>
+    <string name="pref__localization__subtypes" translatable="false">localization__subtypes</string>
+
+    <!-- Preference group: Smartbar -->
+    <string name="pref__smartbar__enabled" translatable="false">smartbar__enabled</string>
+
+    <!-- Preference group: Suggestion -->
+    <string name="pref__suggestion__api30_inline_suggestions_enabled" translatable="false">suggestion__api30_inline_suggestions_enabled</string>
+    <string name="pref__suggestion__block_possibly_offensive" translatable="false">suggestion__block_possibly_offensive</string>
+    <string name="pref__suggestion__clipboard_content_enabled" translatable="false">suggestion__clipboard_content_enabled</string>
+    <string name="pref__suggestion__clipboard_content_timeout" translatable="false">suggestion__clipboard_content_timeout</string>
+    <string name="pref__suggestion__display_mode" translatable="false">suggestion__display_mode</string>
+    <string name="pref__suggestion__enabled" translatable="false">suggestion__enabled</string>
+    <string name="pref__suggestion__use_prev_words" translatable="false">suggestion__use_prev_words</string>
+
+    <!-- Preference group: Theme -->
+    <string name="pref__theme__mode" translatable="false">theme__mode</string>
+    <string name="pref__theme__day_theme_ref" translatable="false">theme__day_theme_ref</string>
+    <string name="pref__theme__day_theme_adapt_to_app" translatable="false">theme__day_theme_adapt_to_app</string>
+    <string name="pref__theme__night_theme_ref" translatable="false">theme__night_theme_ref</string>
+    <string name="pref__theme__night_theme_adapt_to_app" translatable="false">theme__night_theme_adapt_to_app</string>
+    <string name="pref__theme__sunrise_time" translatable="false">theme__sunrise_time</string>
+    <string name="pref__theme__sunset_time" translatable="false">theme__sunset_time</string>
+
+</resources>
