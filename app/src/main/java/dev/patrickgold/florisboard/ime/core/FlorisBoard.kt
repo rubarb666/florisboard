@@ -77,6 +77,7 @@ import dev.patrickgold.florisboard.common.ViewUtils
 import dev.patrickgold.florisboard.databinding.FlorisboardBinding
 import dev.patrickgold.florisboard.ime.keyboard.KeyboardState
 import dev.patrickgold.florisboard.ime.keyboard.updateKeyboardState
+import dev.patrickgold.florisboard.preference.Preferences
 import dev.patrickgold.florisboard.util.debugSummarize
 import dev.patrickgold.florisboard.util.findViewWithType
 import dev.patrickgold.florisboard.util.refreshLayoutOf
@@ -228,7 +229,6 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
                 imeManager = getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
                 audioManager = getSystemService(Context.AUDIO_SERVICE) as? AudioManager
                 vibrator = getSystemService(Context.VIBRATOR_SERVICE) as? Vibrator
-                prefs.sync()
                 activeSubtype = subtypeManager.getActiveSubtype() ?: Subtype.DEFAULT
 
                 currentThemeIsNight = themeManager.activeTheme.isNightTheme
@@ -344,7 +344,7 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
             if (config.orientation != Configuration.ORIENTATION_LANDSCAPE) {
                 false
             } else {
-                when (prefs.keyboard.landscapeInputUiMode) {
+                when (prefs.keyboard.landscapeInputUiMode.get()) {
                     LandscapeInputUiMode.DYNAMICALLY_SHOW -> !activeState.imeOptions.flagNoFullscreen && !activeState.imeOptions.flagNoExtractUi
                     LandscapeInputUiMode.NEVER_SHOW -> false
                     LandscapeInputUiMode.ALWAYS_SHOW -> true
@@ -359,7 +359,7 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
     }
 
     override fun onUpdateExtractingVisibility(ei: EditorInfo?) {
-        isExtractViewShown = activeState.isRichInputEditor && when (prefs.keyboard.landscapeInputUiMode) {
+        isExtractViewShown = activeState.isRichInputEditor && when (prefs.keyboard.landscapeInputUiMode.get()) {
             LandscapeInputUiMode.DYNAMICALLY_SHOW -> !activeState.imeOptions.flagNoExtractUi
             LandscapeInputUiMode.NEVER_SHOW -> false
             LandscapeInputUiMode.ALWAYS_SHOW -> true
@@ -383,7 +383,6 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
         flogInfo(LogTopic.IMS_EVENTS) { info?.debugSummarize() ?: "" }
 
         super.onStartInputView(info, restarting)
-        prefs.sync()
         if (info != null) {
             activeState.update(info)
             activeState.isSelectionMode = (info.initialSelEnd - info.initialSelStart) != 0
@@ -421,7 +420,7 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
 
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreateInlineSuggestionsRequest(uiExtras: Bundle): InlineSuggestionsRequest? {
-        return if (prefs.smartbar.enabled && prefs.suggestion.api30InlineSuggestionsEnabled) {
+        return if (prefs.smartbar.enabled.get() && prefs.suggestion.api30InlineSuggestionsEnabled.get()) {
             flogInfo(LogTopic.IMS_EVENTS) {
                 "Creating inline suggestions request because Smartbar and inline suggestions are enabled."
             }
@@ -498,7 +497,6 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
         }
         isWindowShown = true
 
-        prefs.sync()
         val newActiveSubtype = subtypeManager.getActiveSubtype() ?: Subtype.DEFAULT
         if (newActiveSubtype != activeSubtype) {
             activeSubtype = newActiveSubtype
@@ -510,7 +508,7 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
         updateOneHandedPanelVisibility()
         themeManager.update()
 
-        if (prefs.devtools.enabled && prefs.devtools.showHeapMemoryStats) {
+        if (prefs.devtools.enabled.get() && prefs.devtools.showHeapMemoryStats.get()) {
             devtoolsOverlaySyncJob?.cancel()
             devtoolsOverlaySyncJob = uiScope.launch(Dispatchers.Default) {
                 while (true) {
@@ -737,9 +735,9 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
      * Makes a key press vibration if the user has this feature enabled in the preferences.
      */
     fun keyPressVibrate(isMovingGestureEffect: Boolean = false) {
-        if (prefs.keyboard.vibrationEnabled) {
-            var vibrationDuration = prefs.keyboard.vibrationDuration.toLong()
-            var vibrationStrength = prefs.keyboard.vibrationStrength
+        if (prefs.keyboard.vibrationEnabled.get()) {
+            var vibrationDuration = prefs.keyboard.vibrationDuration.get().toLong()
+            var vibrationStrength = prefs.keyboard.vibrationStrength.get()
 
             if (!prefs.keyboard.vibrationEnabledSystem && vibrationDuration < 0 && vibrationStrength < 0) {
                 return
@@ -792,8 +790,8 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
      * Makes a key press sound if the user has this feature enabled in the preferences.
      */
     fun keyPressSound(keyData: KeyData? = null) {
-        if (prefs.keyboard.soundEnabled) {
-            val soundVolume = prefs.keyboard.soundVolume
+        if (prefs.keyboard.soundEnabled.get()) {
+            val soundVolume = prefs.keyboard.soundVolume.get()
             val effect = when (keyData) {
                 is TextKeyData -> when (keyData.code) {
                     KeyCode.SPACE -> AudioManager.FX_KEYPRESS_SPACEBAR
@@ -914,10 +912,10 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
     }
 
     fun toggleOneHandedMode(isRight: Boolean) {
-        prefs.keyboard.oneHandedMode = when (prefs.keyboard.oneHandedMode) {
+        prefs.keyboard.oneHandedMode.set(when (prefs.keyboard.oneHandedMode.get()) {
             OneHandedMode.OFF -> if (isRight) { OneHandedMode.END } else { OneHandedMode.START }
             else -> OneHandedMode.OFF
-        }
+        })
         updateOneHandedPanelVisibility()
     }
 
@@ -926,7 +924,7 @@ open class FlorisBoard : InputMethodService(), LifecycleOwner, FlorisClipboardMa
             uiBinding?.oneHandedCtrlPanelStart?.visibility = View.GONE
             uiBinding?.oneHandedCtrlPanelEnd?.visibility = View.GONE
         } else {
-            when (prefs.keyboard.oneHandedMode) {
+            when (prefs.keyboard.oneHandedMode.get()) {
                 OneHandedMode.OFF -> {
                     uiBinding?.oneHandedCtrlPanelStart?.visibility = View.GONE
                     uiBinding?.oneHandedCtrlPanelEnd?.visibility = View.GONE

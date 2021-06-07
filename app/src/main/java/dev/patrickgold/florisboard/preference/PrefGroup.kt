@@ -18,74 +18,10 @@ package dev.patrickgold.florisboard.preference
 
 import androidx.annotation.StringRes
 
-abstract class PrefGroup(
+abstract class undefPrefGroup(
     private val dataStore: SharedPreferencesWrapper,
     private val initIfAbsent: Boolean
 ) {
 
-    private val context get() = dataStore.applicationContext.get()!!
 
-    protected fun booleanPref(
-        @StringRes key: Int,
-        default: Boolean
-    ) = BooleanPref(dataStore, context.resources.getString(key), default).also {
-        if (initIfAbsent && !dataStore.contains(it.key)) {
-            it.set(default)
-        }
-    }
-
-    protected fun floatPref(
-        @StringRes key: Int,
-        default: Float
-    ) = FloatPref(dataStore, context.resources.getString(key), default).also {
-        if (initIfAbsent && !dataStore.contains(it.key)) {
-            it.set(default)
-        }
-    }
-
-    protected fun intPref(
-        @StringRes key: Int,
-        default: Int
-    ) = IntPref(dataStore, context.resources.getString(key), default).also {
-        if (initIfAbsent && !dataStore.contains(it.key)) {
-            it.set(default)
-        }
-    }
-
-    protected fun longPref(
-        @StringRes key: Int,
-        default: Long
-    ) = LongPref(dataStore, context.resources.getString(key), default).also {
-        if (initIfAbsent && !dataStore.contains(it.key)) {
-            it.set(default)
-        }
-    }
-
-    protected fun <V> shadowStringPref(
-        @StringRes key: Int,
-        default: V,
-        strToValue: (str: String) -> V
-    ) = ShadowStringPref(dataStore, context.resources.getString(key), default, strToValue).also {
-        if (initIfAbsent && !dataStore.contains(it.key)) {
-            it.set(default)
-        }
-    }
-
-    protected fun stringPref(
-        @StringRes key: Int,
-        default: String
-    ) = StringPref(dataStore, context.resources.getString(key), default).also {
-        if (initIfAbsent && !dataStore.contains(it.key)) {
-            it.set(default)
-        }
-    }
-
-    protected fun stringSetPref(
-        @StringRes key: Int,
-        default: MutableSet<String>
-    ) = StringSetPref(dataStore, context.resources.getString(key), default).also {
-        if (initIfAbsent && !dataStore.contains(it.key)) {
-            it.set(default)
-        }
-    }
 }

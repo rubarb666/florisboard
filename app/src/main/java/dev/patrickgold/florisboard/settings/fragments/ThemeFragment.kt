@@ -16,40 +16,34 @@
 
 package dev.patrickgold.florisboard.settings.fragments
 
-import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.preference.Preference
 import androidx.preference.PreferenceCategory
 import androidx.preference.PreferenceFragmentCompat
 import dev.patrickgold.florisboard.R
-import dev.patrickgold.florisboard.ime.core.Preferences
 import dev.patrickgold.florisboard.ime.theme.ThemeMode
-import dev.patrickgold.florisboard.settings.components.ThemeSelectorPreference
+import dev.patrickgold.florisboard.preference.Preferences
 
-class ThemeFragment : PreferenceFragmentCompat(),
-    SharedPreferences.OnSharedPreferenceChangeListener {
-    private var dayThemeGroup: PreferenceCategory? = null
-    private var nightThemeGroup: PreferenceCategory? = null
-    private var dayThemeRef: ThemeSelectorPreference? = null
-    private var nightThemeRef: ThemeSelectorPreference? = null
-    private var sunrisePref: Preference? = null
-    private var sunsetPref: Preference? = null
+class ThemeFragment : PreferenceFragmentCompat() {
     private val prefs get() = Preferences.default()
+
+    private val dayThemeGroup: PreferenceCategory? by lazy { findPreference("theme__day_group") }
+    private val nightThemeGroup: PreferenceCategory? by lazy { findPreference("theme__night_group") }
+    private val dayThemePref: Preference? by lazy { findPreference(prefs.theme.dayThemeRef.key()) }
+    private val nightThemePref: Preference? by lazy { findPreference(prefs.theme.nightThemeRef.key()) }
+    private val sunrisePref: Preference? by lazy { findPreference(prefs.theme.sunriseTime.key()) }
+    private val sunsetPref: Preference? by lazy { findPreference(prefs.theme.sunsetTime.key()) }
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         addPreferencesFromResource(R.xml.prefs_theme)
 
-        dayThemeGroup = findPreference("theme__day_group")
-        nightThemeGroup = findPreference("theme__night_group")
-        dayThemeRef = findPreference(Preferences.Theme.DAY_THEME_REF)
-        nightThemeRef = findPreference(Preferences.Theme.NIGHT_THEME_REF)
-        sunrisePref = findPreference(Preferences.Theme.SUNRISE_TIME)
-        sunsetPref = findPreference(Preferences.Theme.SUNSET_TIME)
-        onSharedPreferenceChanged(prefs.shared, Preferences.Theme.MODE)
+        prefs.theme.mode.observe(this) { refreshUi(it) }
+        prefs.theme.dayThemeRef.observe(this) { dayThemePref. }
+        prefs.theme.mode.observe(this) { refreshUi(it) }
     }
 
-    private fun refreshUi() {
-        when (prefs.theme.mode) {
+    private fun refreshUi(mode: ThemeMode) {
+        when (mode) {
             ThemeMode.ALWAYS_DAY -> {
                 dayThemeGroup?.isEnabled = true
                 nightThemeGroup?.isEnabled = false
@@ -75,30 +69,5 @@ class ThemeFragment : PreferenceFragmentCompat(),
                 sunsetPref?.isVisible = true
             }
         }
-        refreshThemeSelectors()
-    }
-
-    private fun refreshThemeSelectors() {
-        dayThemeRef?.onSharedPreferenceChanged(null, dayThemeRef?.key)
-        nightThemeRef?.onSharedPreferenceChanged(null, nightThemeRef?.key)
-    }
-
-    override fun onSharedPreferenceChanged(sp: SharedPreferences?, key: String?) {
-        prefs.sync()
-        key ?: return
-        if (key == Preferences.Theme.MODE) {
-            refreshUi()
-        }
-    }
-
-    override fun onResume() {
-        prefs.shared.registerOnSharedPreferenceChangeListener(this)
-        refreshThemeSelectors()
-        super.onResume()
-    }
-
-    override fun onPause() {
-        prefs.shared.unregisterOnSharedPreferenceChangeListener(this)
-        super.onPause()
     }
 }

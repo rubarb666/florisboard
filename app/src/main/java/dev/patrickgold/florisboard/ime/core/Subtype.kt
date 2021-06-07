@@ -17,7 +17,6 @@
 package dev.patrickgold.florisboard.ime.core
 
 import dev.patrickgold.florisboard.ime.text.composing.Appender
-import dev.patrickgold.florisboard.ime.text.composing.Composer
 import dev.patrickgold.florisboard.ime.text.layout.LayoutType
 import dev.patrickgold.florisboard.util.LocaleUtils
 import kotlinx.serialization.*

@@ -16,10 +16,18 @@
 
 package dev.patrickgold.florisboard.preference
 
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 import androidx.preference.PreferenceDataStore
 
 abstract class Pref<V> : LiveData<V>() {
+
+    private var isSet: Boolean = false
+
+    abstract fun key(): String
+
+    abstract fun default(): V
 
     abstract fun get(): V
 
@@ -30,108 +38,163 @@ abstract class Pref<V> : LiveData<V>() {
             super.setValue(value)
         } catch (_: Exception) {
             super.postValue(value)
+        } finally {
+            isSet = true
         }
+    }
+
+    override fun observe(owner: LifecycleOwner, observer: Observer<in V>) {
+        super.observe(owner, observer)
+        if (!isSet) setValue(get())
+    }
+
+    override fun observeForever(observer: Observer<in V>) {
+        super.observeForever(observer)
+        if (!isSet) setValue(get())
     }
 }
 
 open class BooleanPref(
     private val dataStore: PreferenceDataStore,
-    val key: String,
-    val default: Boolean
+    private val _key: String,
+    private val _default: Boolean
 ) : Pref<Boolean>() {
 
-    override fun get() = dataStore.getBoolean(key, default)
+    override fun key() = _key
+
+    override fun default() = _default
+
+    override fun get() = dataStore.getBoolean(_key, _default)
 
     override fun set(value: Boolean) {
-        dataStore.putBoolean(key, value)
+        dataStore.putBoolean(_key, value)
         setValue(value)
     }
 }
 
 open class FloatPref(
     private val dataStore: PreferenceDataStore,
-    val key: String,
-    val default: Float
+    private val _key: String,
+    private val _default: Float
 ) : Pref<Float>() {
 
-    override fun get() = dataStore.getFloat(key, default)
+    override fun key() = _key
+
+    override fun default() = _default
+
+    override fun get() = dataStore.getFloat(_key, _default)
 
     override fun set(value: Float) {
-        dataStore.putFloat(key, value)
+        dataStore.putFloat(_key, value)
         setValue(value)
     }
 }
 
 open class IntPref(
     private val dataStore: PreferenceDataStore,
-    val key: String,
-    val default: Int
+    private val _key: String,
+    private val _default: Int
 ) : Pref<Int>() {
 
-    override fun get() = dataStore.getInt(key, default)
+    override fun key() = _key
+
+    override fun default() = _default
+
+    override fun get() = dataStore.getInt(_key, _default)
 
     override fun set(value: Int) {
-        dataStore.putInt(key, value)
+        dataStore.putInt(_key, value)
         setValue(value)
     }
 }
 
 open class LongPref(
     private val dataStore: PreferenceDataStore,
-    val key: String,
-    val default: Long
+    private val _key: String,
+    private val _default: Long
 ) : Pref<Long>() {
 
-    override fun get() = dataStore.getLong(key, default)
+    override fun key() = _key
+
+    override fun default() = _default
+
+    override fun get() = dataStore.getLong(_key, _default)
 
     override fun set(value: Long) {
-        dataStore.putLong(key, value)
+        dataStore.putLong(_key, value)
         setValue(value)
     }
 }
 
 open class ShadowStringPref<V>(
     private val dataStore: PreferenceDataStore,
-    val key: String,
-    val default: V,
+    private val _key: String,
+    private val _default: V,
     val strToValue: (str: String) -> V
 ) : Pref<V>() {
 
+    override fun key() = _key
+
+    override fun default() = _default
+
     override fun get(): V {
-        val str = dataStore.getString(key, null)
-        return if (str != null) strToValue(str) else default
+        val str = dataStore.getString(_key, null)
+        return if (str != null) strToValue(str) else _default
     }
 
     override fun set(value: V) {
-        dataStore.putString(key, value.toString())
+        dataStore.putString(_key, value.toString())
         setValue(value)
     }
 }
 
 open class StringPref(
     private val dataStore: PreferenceDataStore,
-    val key: String,
-    val default: String
+    private val _key: String,
+    private val _default: String
 ) : Pref<String>() {
 
-    override fun get() = dataStore.getString(key, null) ?: default
+    override fun key() = _key
+
+    override fun default() = _default
+
+    override fun get() = dataStore.getString(_key, null) ?: _default
 
     override fun set(value: String) {
-        dataStore.putString(key, value)
+        dataStore.putString(_key, value)
         setValue(value)
     }
 }
 
 open class StringSetPref(
     private val dataStore: PreferenceDataStore,
-    val key: String,
-    val default: MutableSet<String>
+    private val _key: String,
+    private val _default: MutableSet<String>
 ) : Pref<MutableSet<String>>() {
 
-    override fun get(): MutableSet<String> = dataStore.getStringSet(key, null) ?: default
+    override fun key() = _key
+
+    override fun default() = _default
+
+    override fun get(): MutableSet<String> = dataStore.getStringSet(_key, null) ?: _default
 
     override fun set(value: MutableSet<String>) {
-        dataStore.putStringSet(key, value)
+        dataStore.putStringSet(_key, value)
         setValue(value)
+    }
+}
+
+open class StubPref(
+    private val _key: String
+) : Pref<Unit>() {
+
+    override fun key() = _key
+
+    override fun default() = Unit
+
+    override fun get() = Unit
+
+    override fun set(value: Unit) {
+        // Intentionally empty
     }
 }

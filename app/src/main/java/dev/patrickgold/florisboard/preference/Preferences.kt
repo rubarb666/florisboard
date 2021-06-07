@@ -18,6 +18,7 @@ package dev.patrickgold.florisboard.preference
 
 import android.content.Context
 import android.provider.Settings
+import androidx.annotation.StringRes
 import dev.patrickgold.florisboard.R
 import dev.patrickgold.florisboard.ime.core.Subtype
 import dev.patrickgold.florisboard.ime.landscapeinput.LandscapeInputUiMode
@@ -25,6 +26,7 @@ import dev.patrickgold.florisboard.ime.onehanded.OneHandedMode
 import dev.patrickgold.florisboard.ime.text.gestures.DistanceThreshold
 import dev.patrickgold.florisboard.ime.text.gestures.SwipeAction
 import dev.patrickgold.florisboard.ime.text.gestures.VelocityThreshold
+import dev.patrickgold.florisboard.ime.text.key.KeyHintConfiguration
 import dev.patrickgold.florisboard.ime.text.key.KeyHintMode
 import dev.patrickgold.florisboard.ime.text.key.UtilityKeyAction
 import dev.patrickgold.florisboard.ime.text.smartbar.CandidateView
@@ -35,15 +37,14 @@ import dev.patrickgold.florisboard.util.VersionName
 class Preferences private constructor(
     context: Context,
     name: String,
-    private val initIfAbsent: Boolean
+    initIfAbsent: Boolean
 ) : SharedPreferencesWrapper(context, name) {
-
     companion object {
         private var defaultInstance: Preferences? = null
 
         fun default() = defaultInstance!!
 
-        fun initDefault(
+        fun init(
             context: Context,
             name: String = defaultName(context),
             initIfAbsent: Boolean = true
@@ -74,7 +75,7 @@ class Preferences private constructor(
     }
 
     val advanced = AdvancedGroup(this, initIfAbsent)
-    class AdvancedGroup(d: Preferences, i: Boolean) : PrefGroup(d, i) {
+    class AdvancedGroup(d: Preferences, i: Boolean) : Group(d, i) {
         val forcePrivateMode =
             booleanPref(R.string.pref__advanced__force_private_mode, false)
         val settingsTheme =
@@ -115,6 +116,8 @@ class Preferences private constructor(
 
     val devtools = DevtoolsGroup(this, initIfAbsent)
     class DevtoolsGroup(d: Preferences, i: Boolean) : PrefGroup(d, i) {
+        val clearUdmInternalDatabase =
+            stubPref(R.string.pref__devtools__clear_udm_internal_database)
         val enabled =
             booleanPref(R.string.pref__devtools__enabled, false)
         val showHeapMemoryStats =
@@ -284,6 +287,9 @@ class Preferences private constructor(
             intPref(R.string.pref__keyboard__vibration_duration, -1)
         val vibrationStrength =
             intPref(R.string.pref__keyboard__vibration_strength, -1)
+
+        fun keyHintConfiguration() =
+            KeyHintConfiguration(hintedSymbolsMode.get(), hintedNumberRowMode.get(), mergeHintPopupsEnabled.get())
     }
 
     val localization = LocalizationGroup(this, initIfAbsent)
@@ -340,5 +346,83 @@ class Preferences private constructor(
             intPref(R.string.pref__theme__sunrise_time, TimeUtil.encode(6, 0))
         val sunsetTime =
             intPref(R.string.pref__theme__sunset_time, TimeUtil.encode(18, 0))
+    }
+
+
+
+    abstract class Group(
+        private val prefs: Preferences,
+        private val initIfAbsent: Boolean
+    ) {
+
+        private val context get() = prefs.applicationContext.get()!!
+
+        protected fun booleanPref(
+            @StringRes key: Int,
+            default: Boolean
+        ) = BooleanPref(prefs, context.resources.getString(key), default).also {
+            if (initIfAbsent && !prefs.contains(it.key())) {
+                it.set(default)
+            }
+        }
+
+        protected fun floatPref(
+            @StringRes key: Int,
+            default: Float
+        ) = FloatPref(dataStore, context.resources.getString(key), default).also {
+            if (initIfAbsent && !dataStore.contains(it.key())) {
+                it.set(default)
+            }
+        }
+
+        protected fun intPref(
+            @StringRes key: Int,
+            default: Int
+        ) = IntPref(dataStore, context.resources.getString(key), default).also {
+            if (initIfAbsent && !dataStore.contains(it.key())) {
+                it.set(default)
+            }
+        }
+
+        protected fun longPref(
+            @StringRes key: Int,
+            default: Long
+        ) = LongPref(dataStore, context.resources.getString(key), default).also {
+            if (initIfAbsent && !dataStore.contains(it.key())) {
+                it.set(default)
+            }
+        }
+
+        protected fun <V> shadowStringPref(
+            @StringRes key: Int,
+            default: V,
+            strToValue: (str: String) -> V
+        ) = ShadowStringPref(dataStore, context.resources.getString(key), default, strToValue).also {
+            if (initIfAbsent && !dataStore.contains(it.key())) {
+                it.set(default)
+            }
+        }
+
+        protected fun stringPref(
+            @StringRes key: Int,
+            default: String
+        ) = StringPref(dataStore, context.resources.getString(key), default).also {
+            if (initIfAbsent && !dataStore.contains(it.key())) {
+                it.set(default)
+            }
+        }
+
+        protected fun stringSetPref(
+            @StringRes key: Int,
+            default: MutableSet<String>
+        ) = StringSetPref(dataStore, context.resources.getString(key), default).also {
+            if (initIfAbsent && !dataStore.contains(it.key())) {
+                it.set(default)
+            }
+        }
+
+        protected fun stubPref(
+            @StringRes key: Int
+        ) = StubPref(context.resources.getString(key))
     }
 }

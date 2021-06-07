@@ -16,23 +16,28 @@
 
 package dev.patrickgold.florisboard.settings
 
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import dev.patrickgold.florisboard.R
 import dev.patrickgold.florisboard.databinding.AdvancedActivityBinding
-import dev.patrickgold.florisboard.ime.core.Preferences
+import dev.patrickgold.florisboard.preference.Preferences
 import dev.patrickgold.florisboard.util.PackageManagerUtils
 
-class AdvancedActivity : AppCompatActivity(),
-    SharedPreferences.OnSharedPreferenceChangeListener {
+class AdvancedActivity : AppCompatActivity() {
     private lateinit var binding: AdvancedActivityBinding
     private val prefs get() = Preferences.default()
 
     companion object {
         const val RESULT_APPLY_THEME = 0x322D
+    }
+
+    init {
+        prefs.advanced.settingsTheme.observe(this) {
+            setResult(RESULT_APPLY_THEME)
+            finish()
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,28 +62,14 @@ class AdvancedActivity : AppCompatActivity(),
         }
     }
 
-    override fun onSharedPreferenceChanged(sp: SharedPreferences?, key: String?) {
-        prefs.sync()
-        if (key == Preferences.Advanced.SETTINGS_THEME) {
-            setResult(RESULT_APPLY_THEME)
-            finish()
-        }
-    }
-
-    override fun onResume() {
-        prefs.shared.registerOnSharedPreferenceChangeListener(this)
-        super.onResume()
-    }
-
     override fun onPause() {
-        prefs.shared.unregisterOnSharedPreferenceChangeListener(this)
         updateLauncherIconStatus()
         super.onPause()
     }
 
     private fun updateLauncherIconStatus() {
         // Set LauncherAlias enabled/disabled state just before destroying/pausing this activity
-        if (prefs.advanced.showAppIcon) {
+        if (prefs.advanced.showAppIcon.get()) {
             PackageManagerUtils.showAppIcon(this)
         } else {
             PackageManagerUtils.hideAppIcon(this)

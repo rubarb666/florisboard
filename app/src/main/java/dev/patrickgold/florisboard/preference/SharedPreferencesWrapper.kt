@@ -30,7 +30,7 @@ abstract class SharedPreferencesWrapper protected constructor(
         fun defaultName(context: Context) = context.packageName + "_preferences"
     }
 
-    val applicationContext: WeakReference<Context> = WeakReference(context.applicationContext ?: context)
+    protected val applicationContext: WeakReference<Context> = WeakReference(context.applicationContext ?: context)
     protected val shared: SharedPreferences = context.getSharedPreferences(name, Context.MODE_PRIVATE)
 
     override fun getBoolean(key: String?, defValue: Boolean): Boolean {

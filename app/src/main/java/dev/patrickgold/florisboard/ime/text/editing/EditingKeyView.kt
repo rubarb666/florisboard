@@ -31,12 +31,12 @@ import androidx.appcompat.widget.AppCompatImageButton
 import dev.patrickgold.florisboard.R
 import dev.patrickgold.florisboard.ime.core.FlorisBoard
 import dev.patrickgold.florisboard.ime.core.InputKeyEvent
-import dev.patrickgold.florisboard.ime.core.Preferences
 import dev.patrickgold.florisboard.ime.text.key.KeyCode
 import dev.patrickgold.florisboard.ime.text.keyboard.TextKeyData
 import dev.patrickgold.florisboard.ime.theme.Theme
 import dev.patrickgold.florisboard.ime.theme.ThemeManager
 import dev.patrickgold.florisboard.ime.theme.ThemeValue
+import dev.patrickgold.florisboard.preference.Preferences
 import dev.patrickgold.florisboard.util.cancelAll
 import dev.patrickgold.florisboard.util.postAtScheduledRate
 
@@ -120,7 +120,7 @@ class EditingKeyView : AppCompatImageButton, ThemeManager.OnThemeUpdatedListener
                     KeyCode.ARROW_RIGHT,
                     KeyCode.ARROW_UP,
                     KeyCode.DELETE -> {
-                        val delayMillis = prefs.keyboard.longPressDelay.toLong()
+                        val delayMillis = prefs.keyboard.longPressDelay.get().toLong()
                         repeatedKeyPressHandler.postAtScheduledRate(delayMillis, 25) {
                             if (isKeyPressed) {
                                 florisboard?.textInputManager?.inputEventDispatcher?.send(InputKeyEvent.downUp(data))

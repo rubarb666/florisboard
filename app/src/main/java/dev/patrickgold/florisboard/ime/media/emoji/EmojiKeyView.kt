@@ -27,10 +27,10 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import dev.patrickgold.florisboard.R
 import dev.patrickgold.florisboard.ime.core.FlorisBoard
-import dev.patrickgold.florisboard.ime.core.Preferences
 import dev.patrickgold.florisboard.ime.text.key.KeyHintConfiguration
 import dev.patrickgold.florisboard.ime.theme.Theme
 import dev.patrickgold.florisboard.ime.theme.ThemeManager
+import dev.patrickgold.florisboard.preference.Preferences
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
 
@@ -95,7 +95,7 @@ class EmojiKeyView(
         when (event.actionMasked) {
             MotionEvent.ACTION_DOWN -> {
                 isCancelled = false
-                val delayMillis = prefs.keyboard.longPressDelay
+                val delayMillis = prefs.keyboard.longPressDelay.get()
                 if (osHandler == null) {
                     osHandler = Handler()
                 }

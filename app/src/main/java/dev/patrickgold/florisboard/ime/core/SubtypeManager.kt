@@ -22,6 +22,7 @@ import dev.patrickgold.florisboard.ime.extension.AssetManager
 import dev.patrickgold.florisboard.ime.extension.AssetRef
 import dev.patrickgold.florisboard.ime.extension.AssetSource
 import dev.patrickgold.florisboard.ime.text.key.CurrencySet
+import dev.patrickgold.florisboard.preference.Preferences
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
 import java.util.*
@@ -66,7 +67,7 @@ class SubtypeManager(
     init {
         imeConfig = loadImeConfig(IME_CONFIG_FILE_PATH)
 
-        val listRaw = prefs.localization.subtypes
+        val listRaw = prefs.localization.subtypes.get()
         if (listRaw.isNotBlank()) {
             listRaw.split(SUBTYPE_LIST_STR_DELIMITER).forEach {
                 _subtypes.add(Subtype.fromString(it))
@@ -75,7 +76,7 @@ class SubtypeManager(
     }
 
     private fun syncSubtypeListToPrefs() {
-        prefs.localization.subtypes = _subtypes.joinToString(SUBTYPE_LIST_STR_DELIMITER)
+        prefs.localization.subtypes.set(_subtypes.joinToString(SUBTYPE_LIST_STR_DELIMITER))
     }
 
     /**
@@ -150,15 +151,15 @@ class SubtypeManager(
     fun getActiveSubtype(): Subtype? {
         val subtypeList = _subtypes
         for (subtype in subtypeList) {
-            if (subtype.id == prefs.localization.activeSubtypeId) {
+            if (subtype.id == prefs.localization.activeSubtypeId.get()) {
                 return subtype
             }
         }
         return if (subtypeList.isNotEmpty()) {
-            prefs.localization.activeSubtypeId = subtypeList[0].id
+            prefs.localization.activeSubtypeId.set(subtypeList[0].id)
             subtypeList[0]
         } else {
-            prefs.localization.activeSubtypeId = Subtype.DEFAULT.id
+            prefs.localization.activeSubtypeId.set(Subtype.DEFAULT.id)
             null
         }
     }
@@ -224,7 +225,7 @@ class SubtypeManager(
             }
         }
         syncSubtypeListToPrefs()
-        if (subtypeToRemove.id == prefs.localization.activeSubtypeId) {
+        if (subtypeToRemove.id == prefs.localization.activeSubtypeId.get()) {
             getActiveSubtype()
         }
     }
@@ -250,10 +251,10 @@ class SubtypeManager(
         if (triggerNextSubtype) {
             newActiveSubtype = subtypeList.last()
         }
-        prefs.localization.activeSubtypeId = when (newActiveSubtype) {
+        prefs.localization.activeSubtypeId.set(when (newActiveSubtype) {
             null -> Subtype.DEFAULT.id
             else -> newActiveSubtype.id
-        }
+        })
         return newActiveSubtype
     }
 
@@ -278,10 +279,10 @@ class SubtypeManager(
         if (triggerNextSubtype) {
             newActiveSubtype = subtypeList.first()
         }
-        prefs.localization.activeSubtypeId = when (newActiveSubtype) {
+        prefs.localization.activeSubtypeId.set(when (newActiveSubtype) {
             null -> Subtype.DEFAULT.id
             else -> newActiveSubtype.id
-        }
+        })
         return newActiveSubtype
     }
 }

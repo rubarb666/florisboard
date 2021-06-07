@@ -29,7 +29,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import dev.patrickgold.florisboard.R
 import dev.patrickgold.florisboard.databinding.SetupActivityBinding
-import dev.patrickgold.florisboard.ime.core.Preferences
+import dev.patrickgold.florisboard.preference.Preferences
 import dev.patrickgold.florisboard.settings.SettingsMainActivity
 
 class SetupActivity : AppCompatActivity() {
@@ -40,16 +40,14 @@ class SetupActivity : AppCompatActivity() {
     private lateinit var adapter: ViewPagerAdapter
     private lateinit var binding: SetupActivityBinding
     lateinit var imm: InputMethodManager
-    lateinit var prefs: Preferences
+    private val prefs get() = Preferences.default()
     private var shouldFinish: Boolean = false
     private var shouldLaunchSettings: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        prefs = Preferences(this)
-        prefs.initDefaultPreferences()
         imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
 
-        val mode = when (prefs.advanced.settingsTheme) {
+        val mode = when (prefs.advanced.settingsTheme.get()) {
             "light" -> AppCompatDelegate.MODE_NIGHT_NO
             "dark" -> AppCompatDelegate.MODE_NIGHT_YES
             "auto" -> AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
@@ -85,7 +83,7 @@ class SetupActivity : AppCompatActivity() {
             loadPage(binding.viewPager.currentItem + 1)
         }
         binding.finishButton.setOnClickListener {
-            prefs.internal.isImeSetUp = true
+            prefs.internal.isImeSetUp.set(true)
             launchSettingsAndSetFinishFlag()
         }
         binding.okButton.setOnClickListener {
@@ -109,7 +107,7 @@ class SetupActivity : AppCompatActivity() {
             }
             return
         }
-        if (prefs.internal.isImeSetUp && shouldLaunchSettings) {
+        if (prefs.internal.isImeSetUp.get() && shouldLaunchSettings) {
             launchSettingsAndSetFinishFlag()
         }
     }

@@ -20,11 +20,11 @@ import android.app.Application
 import dev.patrickgold.florisboard.crashutility.CrashUtility
 import dev.patrickgold.florisboard.debug.Flog
 import dev.patrickgold.florisboard.debug.LogTopic
-import dev.patrickgold.florisboard.ime.core.Preferences
 import dev.patrickgold.florisboard.ime.core.SubtypeManager
 import dev.patrickgold.florisboard.ime.dictionary.DictionaryManager
 import dev.patrickgold.florisboard.ime.extension.AssetManager
 import dev.patrickgold.florisboard.ime.theme.ThemeManager
+import dev.patrickgold.florisboard.preference.Preferences
 import timber.log.Timber
 
 @Suppress("unused")
@@ -42,11 +42,10 @@ class FlorisApplication : Application() {
             flogOutputs = Flog.OUTPUT_CONSOLE
         )
         CrashUtility.install(this)
-        val prefs = Preferences.initDefault(this)
+        Preferences.init(this)
         val assetManager = AssetManager.init(this)
         SubtypeManager.init(this)
         DictionaryManager.init(this)
         ThemeManager.init(this, assetManager)
-        prefs.initDefaultPreferences()
     }
 }

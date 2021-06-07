@@ -26,7 +26,7 @@ import dev.patrickgold.florisboard.BuildConfig
 import dev.patrickgold.florisboard.R
 import dev.patrickgold.florisboard.databinding.CrashDialogBinding
 import dev.patrickgold.florisboard.debug.*
-import dev.patrickgold.florisboard.ime.core.Preferences
+import dev.patrickgold.florisboard.preference.Preferences
 
 class CrashDialogActivity : AppCompatActivity() {
     private lateinit var binding: CrashDialogBinding
@@ -58,18 +58,18 @@ class CrashDialogActivity : AppCompatActivity() {
             val prefs = prefs
             if (prefs != null) {
                 try {
-                    appendLine("smartbar = ${prefs.smartbar.enabled}")
-                    appendLine("suggestions = ${prefs.suggestion.enabled}")
-                    appendLine("suggestions_clipboard = ${prefs.suggestion.clipboardContentEnabled}")
-                    appendLine("suggestions_next_word = ${prefs.suggestion.usePrevWords}")
-                    appendLine("glide = ${prefs.glide.enabled}")
-                    appendLine("clipboard_internal = ${prefs.clipboard.enableInternal}")
-                    appendLine("clipboard_history = ${prefs.clipboard.enableHistory}")
+                    appendLine("smartbar = ${prefs.smartbar.enabled.get()}")
+                    appendLine("suggestions = ${prefs.suggestion.enabled.get()}")
+                    appendLine("suggestions_clipboard = ${prefs.suggestion.clipboardContentEnabled.get()}")
+                    appendLine("suggestions_next_word = ${prefs.suggestion.usePrevWords.get()}")
+                    appendLine("glide = ${prefs.glide.enabled.get()}")
+                    appendLine("clipboard_internal = ${prefs.clipboard.enableInternal.get()}")
+                    appendLine("clipboard_history = ${prefs.clipboard.enableHistory.get()}")
                 } catch (_: Exception) {
                     appendLine("error: Exception was thrown while retrieving preferences, instance not null.")
                 }
             } else {
-                appendLine("error: Failed to fetch preferences: PrefHelper instance was null!")
+                appendLine("error: Failed to fetch preferences, instance was null.")
             }
             appendLine("```")
             appendLine()

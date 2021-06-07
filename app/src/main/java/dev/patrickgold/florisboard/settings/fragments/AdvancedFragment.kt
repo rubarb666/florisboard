@@ -21,18 +21,20 @@ import androidx.appcompat.app.AlertDialog
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import dev.patrickgold.florisboard.R
-import dev.patrickgold.florisboard.ime.core.Preferences
 import dev.patrickgold.florisboard.ime.dictionary.DictionaryManager
 import dev.patrickgold.florisboard.ime.dictionary.FlorisUserDictionaryDatabase
+import dev.patrickgold.florisboard.preference.Preferences
 
 class AdvancedFragment : PreferenceFragmentCompat() {
+    private val prefs get() = Preferences.default()
+
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         addPreferencesFromResource(R.xml.prefs_advanced)
     }
 
     override fun onPreferenceTreeClick(preference: Preference?): Boolean {
         return when (preference?.key) {
-            Preferences.Devtools.CLEAR_UDM_INTERNAL_DATABASE -> {
+            prefs.devtools.clearUdmInternalDatabase.key() -> {
                 AlertDialog.Builder(requireContext()).apply {
                     setTitle(R.string.assets__action__delete_confirm_title)
                     setMessage(String.format(resources.getString(R.string.assets__action__delete_confirm_message), FlorisUserDictionaryDatabase.DB_FILE_NAME))

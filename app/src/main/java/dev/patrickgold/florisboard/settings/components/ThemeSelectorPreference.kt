@@ -25,9 +25,9 @@ import androidx.preference.Preference
 import androidx.preference.Preference.OnPreferenceClickListener
 import androidx.preference.PreferenceManager
 import dev.patrickgold.florisboard.R
-import dev.patrickgold.florisboard.ime.core.Preferences
 import dev.patrickgold.florisboard.ime.extension.AssetRef
 import dev.patrickgold.florisboard.ime.theme.ThemeManager
+import dev.patrickgold.florisboard.preference.Preferences
 import dev.patrickgold.florisboard.settings.ThemeManagerActivity
 
 /**
@@ -36,8 +36,8 @@ import dev.patrickgold.florisboard.settings.ThemeManagerActivity
  */
 class ThemeSelectorPreference : Preference, SharedPreferences.OnSharedPreferenceChangeListener {
     private var defaultValue: String = when (key) {
-        Preferences.Theme.DAY_THEME_REF -> "assets:ime/theme/floris_day.json"
-        Preferences.Theme.NIGHT_THEME_REF -> "assets:ime/theme/floris_night.json"
+        prefs.theme.dayThemeRef.key() -> "assets:ime/theme/floris_day.json"
+        prefs.theme.nightThemeRef.key() -> "assets:ime/theme/floris_night.json"
         else -> ""
     }
     private var dialog: AlertDialog? = null
@@ -57,14 +57,12 @@ class ThemeSelectorPreference : Preference, SharedPreferences.OnSharedPreference
     override fun onAttachedToHierarchy(preferenceManager: PreferenceManager?) {
         super.onAttachedToHierarchy(preferenceManager)
         summary = generateSummaryText()
-        prefs.shared.registerOnSharedPreferenceChangeListener(this)
     }
 
     override fun onDetached() {
         if (dialog?.isShowing == true) {
             dialog?.dismiss()
         }
-        prefs.shared.unregisterOnSharedPreferenceChangeListener(this)
         super.onDetached()
     }
 
@@ -79,15 +77,15 @@ class ThemeSelectorPreference : Preference, SharedPreferences.OnSharedPreference
      */
     private fun generateSummaryText(): String {
         when (key) {
-            Preferences.Theme.DAY_THEME_REF -> {
+            prefs.theme.dayThemeRef.key() -> {
                 val metaIndex = themeManager.indexedDayThemeRefs
-                AssetRef.fromString(prefs.theme.dayThemeRef).onSuccess { ref ->
+                AssetRef.fromString(prefs.theme.dayThemeRef.get()).onSuccess { ref ->
                     metaIndex[ref]?.label?.let { return it }
                 }
             }
-            Preferences.Theme.NIGHT_THEME_REF -> {
+            prefs.theme.nightThemeRef.key() -> {
                 val metaIndex = themeManager.indexedNightThemeRefs
-                AssetRef.fromString(prefs.theme.nightThemeRef).onSuccess { ref ->
+                AssetRef.fromString(prefs.theme.nightThemeRef.get()).onSuccess { ref ->
                     metaIndex[ref]?.label?.let { return it }
                 }
             }

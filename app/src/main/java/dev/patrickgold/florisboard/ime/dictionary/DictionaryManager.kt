@@ -18,14 +18,12 @@ package dev.patrickgold.florisboard.ime.dictionary
 
 import android.content.Context
 import androidx.room.Room
-import dev.patrickgold.florisboard.ime.core.Preferences
 import dev.patrickgold.florisboard.ime.core.Subtype
-import dev.patrickgold.florisboard.ime.extension.AssetRef
 import dev.patrickgold.florisboard.ime.nlp.SuggestionList
 import dev.patrickgold.florisboard.ime.nlp.Word
+import dev.patrickgold.florisboard.preference.Preferences
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
-import timber.log.Timber
 import java.lang.ref.WeakReference
 import java.util.*
 
@@ -89,7 +87,7 @@ class DictionaryManager private constructor(
         if (florisDao == null && systemDao == null) {
             return
         }
-        if (prefs.dictionary.enableFlorisUserDictionary) {
+        if (prefs.dictionary.enableFlorisUserDictionary.get()) {
             florisDao?.query(word, locale)?.let {
                 for (entry in it) {
                     destSuggestionList.add(entry.word, entry.freq)
@@ -101,7 +99,7 @@ class DictionaryManager private constructor(
                 }
             }
         }
-        if (prefs.dictionary.enableSystemUserDictionary) {
+        if (prefs.dictionary.enableSystemUserDictionary.get()) {
             systemDao?.query(word, locale)?.let {
                 for (entry in it) {
                     destSuggestionList.add(entry.word, entry.freq)
@@ -117,7 +115,7 @@ class DictionaryManager private constructor(
 
     @Synchronized
     fun florisUserDictionaryDao(): UserDictionaryDao? {
-        return if (prefs.suggestion.enabled && prefs.dictionary.enableFlorisUserDictionary) {
+        return if (prefs.suggestion.enabled.get() && prefs.dictionary.enableFlorisUserDictionary.get()) {
             florisUserDictionaryDatabase?.userDictionaryDao()
         } else {
             null
@@ -126,7 +124,7 @@ class DictionaryManager private constructor(
 
     @Synchronized
     fun florisUserDictionaryDatabase(): FlorisUserDictionaryDatabase? {
-        return if (prefs.suggestion.enabled && prefs.dictionary.enableFlorisUserDictionary) {
+        return if (prefs.suggestion.enabled.get() && prefs.dictionary.enableFlorisUserDictionary.get()) {
             florisUserDictionaryDatabase
         } else {
             null
@@ -135,7 +133,7 @@ class DictionaryManager private constructor(
 
     @Synchronized
     fun systemUserDictionaryDao(): UserDictionaryDao? {
-        return if (prefs.suggestion.enabled && prefs.dictionary.enableSystemUserDictionary) {
+        return if (prefs.suggestion.enabled.get() && prefs.dictionary.enableSystemUserDictionary.get()) {
             systemUserDictionaryDatabase?.userDictionaryDao()
         } else {
             null
@@ -144,7 +142,7 @@ class DictionaryManager private constructor(
 
     @Synchronized
     fun systemUserDictionaryDatabase(): SystemUserDictionaryDatabase? {
-        return if (prefs.suggestion.enabled && prefs.dictionary.enableSystemUserDictionary) {
+        return if (prefs.suggestion.enabled.get() && prefs.dictionary.enableSystemUserDictionary.get()) {
             systemUserDictionaryDatabase
         } else {
             null
@@ -155,15 +153,15 @@ class DictionaryManager private constructor(
     fun loadUserDictionariesIfNecessary() {
         val context = applicationContext.get() ?: return
 
-        if (prefs.suggestion.enabled) {
-            if (florisUserDictionaryDatabase == null && prefs.dictionary.enableFlorisUserDictionary) {
+        if (prefs.suggestion.enabled.get()) {
+            if (florisUserDictionaryDatabase == null && prefs.dictionary.enableFlorisUserDictionary.get()) {
                 florisUserDictionaryDatabase = Room.databaseBuilder(
                     context,
                     FlorisUserDictionaryDatabase::class.java,
                     FlorisUserDictionaryDatabase.DB_FILE_NAME
                 ).allowMainThreadQueries().build()
             }
-            if (systemUserDictionaryDatabase == null && prefs.dictionary.enableSystemUserDictionary) {
+            if (systemUserDictionaryDatabase == null && prefs.dictionary.enableSystemUserDictionary.get()) {
                 systemUserDictionaryDatabase = SystemUserDictionaryDatabase(context)
             }
         }

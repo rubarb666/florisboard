@@ -1,6 +1,7 @@
 rootProject.name = "FlorisBoard"
 
 include(":app")
+include(":preference")
 
 pluginManagement {
     repositories {

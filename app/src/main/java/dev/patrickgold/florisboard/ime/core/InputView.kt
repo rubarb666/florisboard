@@ -32,6 +32,7 @@ import dev.patrickgold.florisboard.ime.onehanded.OneHandedMode
 import dev.patrickgold.florisboard.ime.text.key.KeyVariation
 import dev.patrickgold.florisboard.ime.text.keyboard.KeyboardMode
 import dev.patrickgold.florisboard.common.ViewUtils
+import dev.patrickgold.florisboard.preference.Preferences
 import kotlin.math.roundToInt
 
 /**
@@ -81,12 +82,12 @@ class InputView : LinearLayout {
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         heightFactor = when (resources.configuration.orientation) {
             Configuration.ORIENTATION_LANDSCAPE -> 1.0f
-            else -> if (prefs.keyboard.oneHandedMode != OneHandedMode.OFF) {
-                prefs.keyboard.oneHandedModeScaleFactor / 100.0f
+            else -> if (prefs.keyboard.oneHandedMode.get() != OneHandedMode.OFF) {
+                prefs.keyboard.oneHandedModeScaleFactor.get() / 100.0f
             } else {
                 1.0f
             }
-        } * when (prefs.keyboard.heightFactor) {
+        } * when (prefs.keyboard.heightFactor.get()) {
             "extra_short" -> 0.85f
             "short" -> 0.90f
             "mid_short" -> 0.95f
@@ -94,14 +95,14 @@ class InputView : LinearLayout {
             "mid_tall" -> 1.05f
             "tall" -> 1.10f
             "extra_tall" -> 1.15f
-            "custom" -> prefs.keyboard.heightFactorCustom.toFloat() / 100.0f
+            "custom" -> prefs.keyboard.heightFactorCustom.get().toFloat() / 100.0f
             else -> 1.00f
         }
         var baseHeight = calcInputViewHeight() * heightFactor
         var baseSmartbarHeight = 0.16129f * baseHeight
         var baseTextInputHeight = baseHeight - baseSmartbarHeight
         val tim = florisboard.textInputManager
-        shouldGiveAdditionalSpace = prefs.keyboard.numberRow &&
+        shouldGiveAdditionalSpace = prefs.keyboard.numberRow.get() &&
                 !(tim.getActiveKeyboardMode() == KeyboardMode.NUMERIC ||
                 tim.getActiveKeyboardMode() == KeyboardMode.PHONE ||
                 tim.getActiveKeyboardMode() == KeyboardMode.PHONE2)
@@ -110,8 +111,8 @@ class InputView : LinearLayout {
             baseHeight += additionalHeight
             baseTextInputHeight += additionalHeight
         }
-        val smartbarDisabled = !prefs.smartbar.enabled ||
-                tim.activeState.keyVariation == KeyVariation.PASSWORD && prefs.keyboard.numberRow && !prefs.suggestion.api30InlineSuggestionsEnabled
+        val smartbarDisabled = !prefs.smartbar.enabled.get() ||
+                tim.activeState.keyVariation == KeyVariation.PASSWORD && prefs.keyboard.numberRow.get() && !prefs.suggestion.api30InlineSuggestionsEnabled.get()
         if (smartbarDisabled) {
             baseHeight = baseTextInputHeight
             baseSmartbarHeight = 0.0f
@@ -124,9 +125,9 @@ class InputView : LinearLayout {
         //  adding a value to the height now will result in a bottom padding (aka offset).
         baseHeight += ViewUtils.dp2px(
             if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                prefs.keyboard.bottomOffsetLandscape.toFloat()
+                prefs.keyboard.bottomOffsetLandscape.get().toFloat()
             } else {
-                prefs.keyboard.bottomOffsetPortrait.toFloat()
+                prefs.keyboard.bottomOffsetPortrait.get().toFloat()
             }
         )
 
@@ -173,7 +174,7 @@ class InputView : LinearLayout {
         super.dispatchDraw(canvas)
         canvas ?: return
 
-        if (prefs.devtools.enabled && prefs.devtools.showHeapMemoryStats) {
+        if (prefs.devtools.enabled.get() && prefs.devtools.showHeapMemoryStats.get()) {
             try {
                 // Note: the below code only gets the heap size in MB, the actual RAM usage (native or others) can be
                 //  a lot higher

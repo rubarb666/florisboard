@@ -5,7 +5,6 @@ import android.content.ContentValues
 import android.net.Uri
 import android.provider.BaseColumns
 import androidx.room.*
-import dev.patrickgold.florisboard.ime.clip.FlorisClipboardManager
 import dev.patrickgold.florisboard.ime.core.FlorisBoard
 import java.io.Closeable
 

@@ -19,7 +19,6 @@ package dev.patrickgold.florisboard.ime.popup
 import dev.patrickgold.florisboard.ime.keyboard.KeyData
 import dev.patrickgold.florisboard.ime.text.key.KeyHintConfiguration
 import dev.patrickgold.florisboard.ime.text.key.KeyHintMode
-import dev.patrickgold.florisboard.ime.text.keyboard.BasicTextKeyData
 import dev.patrickgold.florisboard.ime.text.keyboard.TextComputingEvaluator
 import kotlinx.serialization.Serializable
 

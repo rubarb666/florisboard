@@ -36,10 +36,10 @@ import androidx.autofill.inline.v1.InlineSuggestionUi
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
 import dev.patrickgold.florisboard.R
-import dev.patrickgold.florisboard.ime.core.Preferences
 import dev.patrickgold.florisboard.ime.extension.AssetManager
 import dev.patrickgold.florisboard.ime.extension.AssetRef
 import dev.patrickgold.florisboard.ime.extension.AssetSource
+import dev.patrickgold.florisboard.preference.Preferences
 import dev.patrickgold.florisboard.util.TimeUtil
 import timber.log.Timber
 import java.util.concurrent.CopyOnWriteArrayList
@@ -248,38 +248,38 @@ class ThemeManager private constructor(
     }
 
     private fun evaluateActiveThemeRef(): AssetRef? {
-        Timber.i(prefs.theme.mode.toString())
-        Timber.i(prefs.theme.dayThemeRef)
-        Timber.i(prefs.theme.nightThemeRef)
+        Timber.i(prefs.theme.mode.get().toString())
+        Timber.i(prefs.theme.dayThemeRef.get())
+        Timber.i(prefs.theme.nightThemeRef.get())
         return AssetRef.fromString(
-            when (prefs.theme.mode) {
+            when (prefs.theme.mode.get()) {
                 ThemeMode.ALWAYS_DAY -> {
-                    isAdaptiveThemeEnabled = prefs.theme.dayThemeAdaptToApp
-                    prefs.theme.dayThemeRef
+                    isAdaptiveThemeEnabled = prefs.theme.dayThemeAdaptToApp.get()
+                    prefs.theme.dayThemeRef.get()
                 }
                 ThemeMode.ALWAYS_NIGHT -> {
-                    isAdaptiveThemeEnabled = prefs.theme.nightThemeAdaptToApp
-                    prefs.theme.nightThemeRef
+                    isAdaptiveThemeEnabled = prefs.theme.nightThemeAdaptToApp.get()
+                    prefs.theme.nightThemeRef.get()
                 }
                 ThemeMode.FOLLOW_SYSTEM -> if (applicationContext.resources.configuration.uiMode and
                     Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
                 ) {
-                    isAdaptiveThemeEnabled = prefs.theme.nightThemeAdaptToApp
-                    prefs.theme.nightThemeRef
+                    isAdaptiveThemeEnabled = prefs.theme.nightThemeAdaptToApp.get()
+                    prefs.theme.nightThemeRef.get()
                 } else {
-                    isAdaptiveThemeEnabled = prefs.theme.dayThemeAdaptToApp
-                    prefs.theme.dayThemeRef
+                    isAdaptiveThemeEnabled = prefs.theme.dayThemeAdaptToApp.get()
+                    prefs.theme.dayThemeRef.get()
                 }
                 ThemeMode.FOLLOW_TIME -> {
                     val current = TimeUtil.currentLocalTime()
-                    val sunrise = TimeUtil.decode(prefs.theme.sunriseTime)
-                    val sunset = TimeUtil.decode(prefs.theme.sunsetTime)
+                    val sunrise = TimeUtil.decode(prefs.theme.sunriseTime.get())
+                    val sunset = TimeUtil.decode(prefs.theme.sunsetTime.get())
                     if (TimeUtil.isNightTime(sunrise, sunset, current)) {
-                        isAdaptiveThemeEnabled = prefs.theme.nightThemeAdaptToApp
-                        prefs.theme.nightThemeRef
+                        isAdaptiveThemeEnabled = prefs.theme.nightThemeAdaptToApp.get()
+                        prefs.theme.nightThemeRef.get()
                     } else {
-                        isAdaptiveThemeEnabled = prefs.theme.dayThemeAdaptToApp
-                        prefs.theme.dayThemeRef
+                        isAdaptiveThemeEnabled = prefs.theme.dayThemeAdaptToApp.get()
+                        prefs.theme.dayThemeRef.get()
                     }
                 }
             }

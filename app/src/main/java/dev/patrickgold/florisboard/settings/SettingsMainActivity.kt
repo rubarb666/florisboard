@@ -17,7 +17,6 @@
 package dev.patrickgold.florisboard.settings
 
 import android.content.Intent
-import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
@@ -31,9 +30,9 @@ import androidx.preference.PreferenceFragmentCompat
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dev.patrickgold.florisboard.R
 import dev.patrickgold.florisboard.databinding.SettingsActivityBinding
-import dev.patrickgold.florisboard.ime.core.Preferences
 import dev.patrickgold.florisboard.ime.core.SubtypeManager
 import dev.patrickgold.florisboard.ime.text.layout.LayoutManager
+import dev.patrickgold.florisboard.preference.Preferences
 import dev.patrickgold.florisboard.settings.fragments.*
 import dev.patrickgold.florisboard.util.AppVersionUtils
 import dev.patrickgold.florisboard.util.PackageManagerUtils
@@ -47,7 +46,6 @@ private const val ADVANCED_REQ_CODE = 0x145F
 
 class SettingsMainActivity : AppCompatActivity(),
     BottomNavigationView.OnNavigationItemSelectedListener,
-    SharedPreferences.OnSharedPreferenceChangeListener,
     CoroutineScope by MainScope() {
 
     lateinit var binding: SettingsActivityBinding
@@ -56,11 +54,9 @@ class SettingsMainActivity : AppCompatActivity(),
     val subtypeManager: SubtypeManager get() = SubtypeManager.default()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        prefs.initDefaultPreferences()
-        prefs.sync()
         layoutManager = LayoutManager()
 
-        val mode = when (prefs.advanced.settingsTheme) {
+        val mode = when (prefs.advanced.settingsTheme.get()) {
             "light" -> AppCompatDelegate.MODE_NIGHT_NO
             "dark" -> AppCompatDelegate.MODE_NIGHT_YES
             "auto" -> AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
@@ -179,30 +175,21 @@ class SettingsMainActivity : AppCompatActivity(),
         }
     }
 
-    override fun onSharedPreferenceChanged(sp: SharedPreferences?, key: String?) {}
-
     private fun updateLauncherIconStatus() {
         // Set LauncherAlias enabled/disabled state just before destroying/pausing this activity
-        if (prefs.advanced.showAppIcon) {
+        if (prefs.advanced.showAppIcon.get()) {
             PackageManagerUtils.showAppIcon(this)
         } else {
             PackageManagerUtils.hideAppIcon(this)
         }
     }
 
-    override fun onResume() {
-        prefs.shared.registerOnSharedPreferenceChangeListener(this)
-        super.onResume()
-    }
-
     override fun onPause() {
-        prefs.shared.unregisterOnSharedPreferenceChangeListener(this)
         updateLauncherIconStatus()
         super.onPause()
     }
 
     override fun onDestroy() {
-        prefs.shared.unregisterOnSharedPreferenceChangeListener(this)
         updateLauncherIconStatus()
         super.onDestroy()
     }

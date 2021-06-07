@@ -17,7 +17,7 @@
 package dev.patrickgold.florisboard.util
 
 import android.content.Context
-import dev.patrickgold.florisboard.ime.core.Preferences
+import dev.patrickgold.florisboard.preference.Preferences
 
 object AppVersionUtils {
     fun getRawVersionName(context: Context): String {
@@ -30,9 +30,9 @@ object AppVersionUtils {
 
     fun shouldShowChangelog(context: Context, prefs: Preferences): Boolean {
         val installVersion =
-            VersionName.fromString(prefs.internal.versionOnInstall) ?: VersionName.DEFAULT
+            VersionName.fromString(prefs.internal.versionOnInstall.get()) ?: VersionName.DEFAULT
         val lastChangelogVersion =
-            VersionName.fromString(prefs.internal.versionLastChangelog) ?: VersionName.DEFAULT
+            VersionName.fromString(prefs.internal.versionLastChangelog.get()) ?: VersionName.DEFAULT
         val currentVersion =
             VersionName.fromString(getRawVersionName(context)) ?: VersionName.DEFAULT
 
@@ -40,14 +40,14 @@ object AppVersionUtils {
     }
 
     fun updateVersionOnInstallAndLastUse(context: Context, prefs: Preferences) {
-        if (prefs.internal.versionOnInstall == VersionName.DEFAULT_RAW) {
-            prefs.internal.versionOnInstall = getRawVersionName(context)
+        if (prefs.internal.versionOnInstall.get() == VersionName.DEFAULT_RAW) {
+            prefs.internal.versionOnInstall.set(getRawVersionName(context))
         }
-        prefs.internal.versionLastUse = getRawVersionName(context)
+        prefs.internal.versionLastUse.set(getRawVersionName(context))
     }
 
     fun updateVersionLastChangelog(context: Context, prefs: Preferences) {
-        prefs.internal.versionLastChangelog = getRawVersionName(context)
+        prefs.internal.versionLastChangelog.set(getRawVersionName(context))
     }
 }
 

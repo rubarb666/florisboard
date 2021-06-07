@@ -1,13 +1,13 @@
 package dev.patrickgold.florisboard.ime.text.gestures
 
 import dev.patrickgold.florisboard.ime.core.FlorisBoard
-import dev.patrickgold.florisboard.ime.core.Preferences
 import dev.patrickgold.florisboard.ime.core.Subtype
 import dev.patrickgold.florisboard.ime.extension.AssetManager
 import dev.patrickgold.florisboard.ime.extension.AssetRef
 import dev.patrickgold.florisboard.ime.extension.AssetSource
 import dev.patrickgold.florisboard.ime.text.TextInputManager
 import dev.patrickgold.florisboard.ime.text.keyboard.TextKey
+import dev.patrickgold.florisboard.preference.Preferences
 import kotlinx.coroutines.*
 import org.json.JSONObject
 import kotlin.math.min
@@ -49,7 +49,7 @@ class GlideTypingManager : GlideTypingGesture.Listener, CoroutineScope by MainSc
         this.glideTypingClassifier.addGesturePoint(normalized)
 
         val time = System.currentTimeMillis()
-        if (prefs.glide.showPreview && time - lastTime > prefs.glide.previewRefreshDelay) {
+        if (prefs.glide.showPreview.get() && time - lastTime > prefs.glide.previewRefreshDelay.get()) {
             updateSuggestionsAsync(1, false) {}
             lastTime = time
         }
