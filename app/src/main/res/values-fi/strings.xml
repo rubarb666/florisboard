@@ -336,6 +336,6 @@
     <string name="pref__clipboard__max_history_size__label">Historian maksimikoko</string>
     <string name="pref__unit_items">" kohdetta"</string>
     <!-- glide strings -->
-    <string name="pref__glide_trail_fade_duration">Liu\'un jäljen häivytysaika</string>
-    <string name="pref__glide_trail_max_length">Liu\'un jäljen maksimipituus</string>
+    <string name="pref__glide__trail_fade_duration__label">Liu\'un jäljen häivytysaika</string>
+    <string name="pref__glide__trail_max_length__label">Liu\'un jäljen maksimipituus</string>
 </resources>

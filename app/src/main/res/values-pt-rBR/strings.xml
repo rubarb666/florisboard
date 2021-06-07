@@ -171,7 +171,7 @@
     <string name="pref__keyboard__utility_key_action__switch_keyboard_app" comment="Preference value">Trocar aplicativo de teclado</string>
     <string name="pref__keyboard__utility_key_action__dynamic_switch_language_emojis" comment="Preference value">Dinâmico: Mudar para emojis / Trocar idioma</string>
     <string name="pref__keyboard__merge_hint_popups_enabled__label">Também mostrar popups de símbolo</string>
-    <string name="pref__keyboard_merge_hint_popups_enabled__summary">Adicionar os popups de símbolo ao layout padrão</string>
+    <string name="pref__keyboard__merge_hint_popups_enabled__summary">Adicionar os popups de símbolo ao layout padrão</string>
     <string name="pref__keyboard__font_size_multiplier_portrait__label" comment="Preference title">Multiplicador de tamanho da fonte (retrato)</string>
     <string name="pref__keyboard__font_size_multiplier_landscape__label" comment="Preference title">Multiplicador de tamanho da fonte (paisagem)</string>
     <string name="pref__keyboard__group_layout__label" comment="Preference group title">Layout</string>
@@ -409,8 +409,8 @@
     <string name="pref__clipboard__max_history_size__label">Tamanho máximo do histórico</string>
     <string name="pref__unit_items">" itens"</string>
     <!-- glide strings -->
-    <string name="pref__glide_trail_fade_duration">Tempo de desaparecimento da trilha de deslizamento</string>
-    <string name="pref__glide_preview_refresh_delay">Atraso de atualização da pré-visualização</string>
-    <string name="pref__glide__show_preview">Mostrar pré-visualização durante a digitação deslizante</string>
-    <string name="pref__glide_trail_max_length">Comprimento máximo da trilha de deslizamento</string>
+    <string name="pref__glide__trail_fade_duration__label">Tempo de desaparecimento da trilha de deslizamento</string>
+    <string name="pref__glide__preview_refresh_delay__label">Atraso de atualização da pré-visualização</string>
+    <string name="pref__glide__show_preview__label">Mostrar pré-visualização durante a digitação deslizante</string>
+    <string name="pref__glide__trail_max_length__label">Comprimento máximo da trilha de deslizamento</string>
 </resources>

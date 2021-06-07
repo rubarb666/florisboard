@@ -1,6 +1,4 @@
-<PreferenceScreen
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory
         app:iconSpaceReserved="false"
@@ -8,60 +6,54 @@
         app:title="@string/pref__glide__title">
 
         <SwitchPreferenceCompat
-            app:iconSpaceReserved="false"
-            android:defaultValue="false"
+            app:key="@string/pref__glide__enabled"
             app:disableDependentsState="true"
-            app:key="glide__enabled"
+            app:iconSpaceReserved="false"
             app:title="@string/pref__glide__enabled__label"
-            android:summary="@string/pref__glide__enabled__summary"/>
+            app:summary="@string/pref__glide__enabled__summary"/>
 
         <SwitchPreferenceCompat
+            app:key="@string/pref__glide__show_trail"
             app:iconSpaceReserved="false"
-            android:defaultValue="true"
-            app:key="glide__show_trail"
             app:title="@string/pref__glide__show_trail__label"
-            android:summary="@string/pref__glide__show_trail__summary"/>
+            app:summary="@string/pref__glide__show_trail__summary"/>
 
         <dev.patrickgold.florisboard.settings.components.DialogSeekBarPreference
+            app:key="@string/pref__glide__trail_max_length"
+            app:dependency="@string/pref__glide__show_trail"
             app:allowDividerAbove="false"
-            android:defaultValue="150"
-            app:dependency="glide__show_trail"
-            app:key="glide__trail_max_length"
+            app:iconSpaceReserved="false"
             app:min="25"
             app:max="1000"
-            app:iconSpaceReserved="false"
-            app:title="@string/pref__glide_trail_max_length"
+            app:title="@string/pref__glide__trail_max_length__label"
             app:seekBarIncrement="25"
             app:unit=" points"/>
 
         <dev.patrickgold.florisboard.settings.components.DialogSeekBarPreference
+            app:key="@string/pref__glide__trail_fade_duration"
+            app:dependency="@string/pref__glide__show_trail"
             app:allowDividerAbove="false"
-            android:defaultValue="200"
-            app:dependency="glide__show_trail"
-            app:key="glide__trail_fade_duration"
+            app:iconSpaceReserved="false"
             app:min="0"
             app:max="500"
-            app:iconSpaceReserved="false"
-            app:title="@string/pref__glide_trail_fade_duration"
+            app:title="@string/pref__glide__trail_fade_duration__label"
             app:seekBarIncrement="10"
             app:unit="ms"/>
 
         <SwitchPreferenceCompat
+            app:key="@string/pref__glide__show_preview"
+            app:dependency="@string/pref__glide__show_trail"
             app:iconSpaceReserved="false"
-            android:defaultValue="true"
-            app:dependency="glide__show_trail"
-            app:key="glide__show_preview"
-            app:title="@string/pref__glide__show_preview" />
+            app:title="@string/pref__glide__show_preview__label"/>
 
         <dev.patrickgold.florisboard.settings.components.DialogSeekBarPreference
+            app:key="@string/pref__glide__preview_refresh_delay"
+            app:dependency="@string/pref__glide__show_preview__label"
             app:allowDividerAbove="false"
-            android:defaultValue="150"
-            app:dependency="glide__show_preview"
-            app:key="glide__preview_refresh_delay"
+            app:iconSpaceReserved="false"
             app:min="50"
             app:max="500"
-            app:iconSpaceReserved="false"
-            app:title="@string/pref__glide_preview_refresh_delay"
+            app:title="@string/pref__glide__preview_refresh_delay__label"
             app:seekBarIncrement="25"
             app:unit="ms"/>
 
@@ -73,42 +65,38 @@
         app:title="@string/pref__gestures__general_title">
 
         <ListPreference
-            app:iconSpaceReserved="false"
-            android:defaultValue="shift"
+            app:key="@string/pref__gestures__swipe_up"
+            app:dependency="@string/pref__glide__enabled"
             app:entries="@array/pref__gestures__swipe_action__entries"
             app:entryValues="@array/pref__gestures__swipe_action__values"
-            app:dependency="glide__enabled"
-            app:key="gestures__swipe_up"
+            app:iconSpaceReserved="false"
             app:title="@string/pref__gestures__swipe_up__label"
             app:useSimpleSummaryProvider="true"/>
 
         <ListPreference
-            app:iconSpaceReserved="false"
-            android:defaultValue="hide_keyboard"
+            app:key="@string/pref__gestures__swipe_down"
+            app:dependency="@string/pref__glide__enabled"
             app:entries="@array/pref__gestures__swipe_action__entries"
             app:entryValues="@array/pref__gestures__swipe_action__values"
-            app:dependency="glide__enabled"
-            app:key="gestures__swipe_down"
+            app:iconSpaceReserved="false"
             app:title="@string/pref__gestures__swipe_down__label"
             app:useSimpleSummaryProvider="true"/>
 
         <ListPreference
+            app:key="@string/pref__gestures__swipe_left"
+            app:dependency="@string/pref__glide__enabled"
             app:iconSpaceReserved="false"
-            android:defaultValue="switch_to_next_subtype"
             app:entries="@array/pref__gestures__swipe_action__entries"
             app:entryValues="@array/pref__gestures__swipe_action__values"
-            app:dependency="glide__enabled"
-            app:key="gestures__swipe_left"
             app:title="@string/pref__gestures__swipe_left__label"
             app:useSimpleSummaryProvider="true"/>
 
         <ListPreference
-            app:iconSpaceReserved="false"
-            android:defaultValue="switch_to_prev_subtype"
+            app:key="@string/pref__gestures__swipe_right"
+            app:dependency="@string/pref__glide__enabled"
             app:entries="@array/pref__gestures__swipe_action__entries"
             app:entryValues="@array/pref__gestures__swipe_action__values"
-            app:dependency="glide__enabled"
-            app:key="gestures__swipe_right"
+            app:iconSpaceReserved="false"
             app:title="@string/pref__gestures__swipe_right__label"
             app:useSimpleSummaryProvider="true"/>
 
@@ -120,38 +108,34 @@
         app:title="@string/pref__gestures__space_bar_title">
 
         <ListPreference
-            app:iconSpaceReserved="false"
-            android:defaultValue="switch_to_prev_keyboard"
+            app:key="@string/pref__gestures__space_bar_swipe_up"
             app:entries="@array/pref__gestures__swipe_action__entries"
             app:entryValues="@array/pref__gestures__swipe_action__values"
-            app:key="gestures__space_bar_swipe_up"
+            app:iconSpaceReserved="false"
             app:title="@string/pref__gestures__space_bar_swipe_up__label"
             app:useSimpleSummaryProvider="true"/>
 
         <ListPreference
-            app:iconSpaceReserved="false"
-            android:defaultValue="move_cursor_left"
+            app:key="@string/pref__gestures__space_bar_swipe_left"
             app:entries="@array/pref__gestures__swipe_action__entries"
             app:entryValues="@array/pref__gestures__swipe_action__values"
-            app:key="gestures__space_bar_swipe_left"
+            app:iconSpaceReserved="false"
             app:title="@string/pref__gestures__space_bar_swipe_left__label"
             app:useSimpleSummaryProvider="true"/>
 
         <ListPreference
-            app:iconSpaceReserved="false"
-            android:defaultValue="move_cursor_right"
+            app:key="@string/pref__gestures__space_bar_swipe_right"
             app:entries="@array/pref__gestures__swipe_action__entries"
             app:entryValues="@array/pref__gestures__swipe_action__values"
-            app:key="gestures__space_bar_swipe_right"
+            app:iconSpaceReserved="false"
             app:title="@string/pref__gestures__space_bar_swipe_right__label"
             app:useSimpleSummaryProvider="true"/>
 
         <ListPreference
-            app:iconSpaceReserved="false"
-            android:defaultValue="show_input_method_picker"
+            app:key="@string/pref__gestures__space_bar_long_press"
             app:entries="@array/pref__gestures__swipe_action__entries"
             app:entryValues="@array/pref__gestures__swipe_action__values"
-            app:key="gestures__space_bar_long_press"
+            app:iconSpaceReserved="false"
             app:title="@string/pref__gestures__space_bar_long_press__label"
             app:useSimpleSummaryProvider="true"/>
 
@@ -163,29 +147,26 @@
         app:title="@string/pref__gestures__other_title">
 
         <ListPreference
-            app:iconSpaceReserved="false"
-            android:defaultValue="delete_characters_precisely"
+            app:key="@string/pref__gestures__delete_key_swipe_left"
             app:entries="@array/pref__gestures__swipe_action_delete__entries"
             app:entryValues="@array/pref__gestures__swipe_action_delete__values"
-            app:key="gestures__delete_key_swipe_left"
+            app:iconSpaceReserved="false"
             app:title="@string/pref__gestures__delete_key_swipe_left__label"
             app:useSimpleSummaryProvider="true"/>
 
         <ListPreference
-            app:iconSpaceReserved="false"
-            android:defaultValue="normal"
+            app:key="@string/pref__gestures__swipe_velocity_threshold"
             app:entries="@array/pref__gestures__swipe_velocity_threshold__entries"
             app:entryValues="@array/pref__gestures__swipe_velocity_threshold__values"
-            app:key="gestures__swipe_velocity_threshold"
+            app:iconSpaceReserved="false"
             app:title="@string/pref__gestures__swipe_velocity_threshold__label"
             app:useSimpleSummaryProvider="true"/>
 
         <ListPreference
-            app:iconSpaceReserved="false"
-            android:defaultValue="normal"
+            app:key="@string/pref__gestures__swipe_distance_threshold"
             app:entries="@array/pref__gestures__swipe_distance_threshold__entries"
             app:entryValues="@array/pref__gestures__swipe_distance_threshold__values"
-            app:key="gestures__swipe_distance_threshold"
+            app:iconSpaceReserved="false"
             app:title="@string/pref__gestures__swipe_distance_threshold__label"
             app:useSimpleSummaryProvider="true"/>
 

@@ -187,7 +187,7 @@
     <string name="pref__keyboard__utility_key_action__switch_keyboard_app" comment="Preference value">Switch keyboard app</string>
     <string name="pref__keyboard__utility_key_action__dynamic_switch_language_emojis" comment="Preference value">Dynamic: Switch to emojis / Switch language</string>
     <string name="pref__keyboard__merge_hint_popups_enabled__label">Also show symbol popups</string>
-    <string name="pref__keyboard_merge_hint_popups_enabled__summary">Add the symbol popups to the default layout</string>
+    <string name="pref__keyboard__merge_hint_popups_enabled__summary">Add the symbol popups to the default layout</string>
     <string name="pref__keyboard__font_size_multiplier_portrait__label" comment="Preference title">Font size multiplier (portrait)</string>
     <string name="pref__keyboard__font_size_multiplier_landscape__label" comment="Preference title">Font size multiplier (landscape)</string>
     <string name="pref__keyboard__group_layout__label" comment="Preference group title">Layout</string>
@@ -234,8 +234,8 @@
     <string translatable="false" name="pref__suggestion__api30_inline_suggestions_enabled__summary" comment="Preference summary">Show inline suggestions provided by autofill services (password managers, ...)</string>
     <string translatable="false" name="pref__suggestion__enabled__label" comment="Preference title">[EXPERIMENTAL] Display suggestions while you type</string>
     <string translatable="false" name="pref__suggestion__enabled__summary" comment="Preference summary">Will show in the Smartbar, currently regardless of the selected subtype the dictionary language is English (US)</string>
-    <string translatable="false" name="pref__suggestion__use_pref_words__label" comment="Preference title">[NOT YET INCLUDED] Next-word suggestions</string>
-    <string translatable="false" name="pref__suggestion__use_pref_words__summary" comment="Preference summary">Use previous words for generating suggestions</string>
+    <string translatable="false" name="pref__suggestion__use_prev_words__label" comment="Preference title">[NOT YET INCLUDED] Next-word suggestions</string>
+    <string translatable="false" name="pref__suggestion__use_prev_words__summary" comment="Preference summary">Use previous words for generating suggestions</string>
     <string translatable="false" name="pref__suggestion__block_possibly_offensive__label" comment="Preference title">[EXPERIMENTAL] Block possibly offensive words</string>
     <string translatable="false" name="pref__suggestion__block_possibly_offensive__summary" comment="Preference summary">Prevents possibly offensive words from being suggested while you type</string>
     <string translatable="false" name="pref__suggestion__clipboard_content_enabled__label" comment="Preference title">[EXPERIMENTAL] Clipboard content suggestions</string>
@@ -431,7 +431,7 @@
     <string name="crash_multiple_notification__title" comment="Title of the notification for consecutive crashes">FlorisBoard seems to stop working repeatedly…</string>
     <string name="crash_multiple_notification__body" comment="Body of the notification for consecutive crashes">Falling back to previous keyboard to stop infinite crash loop. Tap to view error details</string>
 
-    <!-- clipboard strings -->
+    <!-- Clipboard strings -->
     <string name="clip__context_header">Clipboard history</string>
     <string name="clip__clear_history">Clear history</string>
     <string name="clip__unpin_item">Unpin item</string>
@@ -456,10 +456,10 @@
     <string name="pref__clipboard__max_history_size__label">Max history size</string>
     <string name="pref__unit_items">" items"</string>
 
-    <!-- glide strings -->
-    <string name="pref__glide_trail_fade_duration">Glide trail fade time</string>
-    <string name="pref__glide_preview_refresh_delay">Preview refresh delay</string>
-    <string name="pref__glide__show_preview">Show preview while glide typing</string>
-    <string name="pref__glide_trail_max_length">Maximum glide trail length</string>
+    <!-- Glide strings -->
+    <string name="pref__glide__trail_fade_duration__label">Glide trail fade time</string>
+    <string name="pref__glide__preview_refresh_delay__label">Preview refresh delay</string>
+    <string name="pref__glide__show_preview__label">Show preview while glide typing</string>
+    <string name="pref__glide__trail_max_length__label">Maximum glide trail length</string>
 
 </resources>

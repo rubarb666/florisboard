@@ -171,7 +171,7 @@
     <string name="pref__keyboard__utility_key_action__switch_keyboard_app" comment="Preference value">Cambia app di tastiera</string>
     <string name="pref__keyboard__utility_key_action__dynamic_switch_language_emojis" comment="Preference value">Dinamico: Passa agli emoji / Cambia lingua</string>
     <string name="pref__keyboard__merge_hint_popups_enabled__label">Mostra anche i popup dei simboli</string>
-    <string name="pref__keyboard_merge_hint_popups_enabled__summary">Aggiungi i popup dei simboli alla disposizione predefinita</string>
+    <string name="pref__keyboard__merge_hint_popups_enabled__summary">Aggiungi i popup dei simboli alla disposizione predefinita</string>
     <string name="pref__keyboard__font_size_multiplier_portrait__label" comment="Preference title">Moltiplicatore della dimensione del testo (ritratto)</string>
     <string name="pref__keyboard__font_size_multiplier_landscape__label" comment="Preference title">Moltiplicatore della dimensione del testo (panorama)</string>
     <string name="pref__keyboard__group_layout__label" comment="Preference group title">Layout</string>
@@ -409,8 +409,8 @@
     <string name="pref__clipboard__max_history_size__label">Dimensione massima della cronologia</string>
     <string name="pref__unit_items">" elementi"</string>
     <!-- glide strings -->
-    <string name="pref__glide_trail_fade_duration">Tempo di dissolvenza del percorso di scorrimento</string>
-    <string name="pref__glide_preview_refresh_delay">Ritardo di aggiornamento dell\'anteprima</string>
-    <string name="pref__glide__show_preview">Mostra l\'anteprima durante la digitazione a scorrimento</string>
-    <string name="pref__glide_trail_max_length">Lunghezza massima del percorso di scorrimento</string>
+    <string name="pref__glide__trail_fade_duration__label">Tempo di dissolvenza del percorso di scorrimento</string>
+    <string name="pref__glide__preview_refresh_delay__label">Ritardo di aggiornamento dell\'anteprima</string>
+    <string name="pref__glide__show_preview__label">Mostra l\'anteprima durante la digitazione a scorrimento</string>
+    <string name="pref__glide__trail_max_length__label">Lunghezza massima del percorso di scorrimento</string>
 </resources>

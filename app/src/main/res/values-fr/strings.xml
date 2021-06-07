@@ -171,7 +171,7 @@
     <string name="pref__keyboard__utility_key_action__switch_keyboard_app" comment="Preference value">Changer d\'application de clavier</string>
     <string name="pref__keyboard__utility_key_action__dynamic_switch_language_emojis" comment="Preference value">Dynamique : Changer vers emojis / Changer de langue</string>
     <string name="pref__keyboard__merge_hint_popups_enabled__label">Afficher également les popups de symboles</string>
-    <string name="pref__keyboard_merge_hint_popups_enabled__summary">Ajouter les popups de symbole à la disposition par défaut</string>
+    <string name="pref__keyboard__merge_hint_popups_enabled__summary">Ajouter les popups de symbole à la disposition par défaut</string>
     <string name="pref__keyboard__font_size_multiplier_portrait__label" comment="Preference title">Multiplicateur de la taille de la police (portrait)</string>
     <string name="pref__keyboard__font_size_multiplier_landscape__label" comment="Preference title">Multiplicateur de la taille de la police (paysage)</string>
     <string name="pref__keyboard__group_layout__label" comment="Preference group title">Disposition</string>
@@ -409,8 +409,8 @@
     <string name="pref__clipboard__max_history_size__label">Taille maximale de l\'historique</string>
     <string name="pref__unit_items">" éléments"</string>
     <!-- glide strings -->
-    <string name="pref__glide_trail_fade_duration">Temps de fondu du parcours de glissement</string>
-    <string name="pref__glide_preview_refresh_delay">Délai d\'actualisation de l\'aperçu</string>
-    <string name="pref__glide__show_preview">Afficher l\'aperçu lors de la saisie en glissant</string>
-    <string name="pref__glide_trail_max_length">Taille de glissement maximale</string>
+    <string name="pref__glide__trail_fade_duration__label">Temps de fondu du parcours de glissement</string>
+    <string name="pref__glide__preview_refresh_delay__label">Délai d\'actualisation de l\'aperçu</string>
+    <string name="pref__glide__show_preview__label">Afficher l\'aperçu lors de la saisie en glissant</string>
+    <string name="pref__glide__trail_max_length__label">Taille de glissement maximale</string>
 </resources>

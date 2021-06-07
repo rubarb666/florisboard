@@ -170,7 +170,7 @@
     <string name="pref__keyboard__utility_key_action__switch_keyboard_app" comment="Preference value">Přepnout aplikaci klávesnice</string>
     <string name="pref__keyboard__utility_key_action__dynamic_switch_language_emojis" comment="Preference value">Dynamicky: Přepnout na emoji / Přepnout jazyk</string>
     <string name="pref__keyboard__merge_hint_popups_enabled__label">Ukazovat vyskakovací symboly</string>
-    <string name="pref__keyboard_merge_hint_popups_enabled__summary">Přidat vyskakovací symboly do základního rozpoložení</string>
+    <string name="pref__keyboard__merge_hint_popups_enabled__summary">Přidat vyskakovací symboly do základního rozpoložení</string>
     <string name="pref__keyboard__font_size_multiplier_portrait__label" comment="Preference title">Multiplikátor velikosti písma (portrét)</string>
     <string name="pref__keyboard__font_size_multiplier_landscape__label" comment="Preference title">Multiplikátor velikosti písma (Krajina)</string>
     <string name="pref__keyboard__group_layout__label" comment="Preference group title">Rozložení</string>

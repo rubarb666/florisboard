@@ -171,7 +171,7 @@
     <string name="pref__keyboard__utility_key_action__switch_keyboard_app" comment="Preference value">Избор на приложение за клавиатура</string>
     <string name="pref__keyboard__utility_key_action__dynamic_switch_language_emojis" comment="Preference value">Динамично: превключва емоджи/езика</string>
     <string name="pref__keyboard__merge_hint_popups_enabled__label">Подсказки за символи</string>
-    <string name="pref__keyboard_merge_hint_popups_enabled__summary">Добавят се подсказки със символи към подразбираната подредба</string>
+    <string name="pref__keyboard__merge_hint_popups_enabled__summary">Добавят се подсказки със символи към подразбираната подредба</string>
     <string name="pref__keyboard__font_size_multiplier_portrait__label" comment="Preference title">Множител на размер на шрифта (портрет)</string>
     <string name="pref__keyboard__font_size_multiplier_landscape__label" comment="Preference title">Множител на размер на шрифта (пейзаж)</string>
     <string name="pref__keyboard__group_layout__label" comment="Preference group title">Оформление</string>
@@ -409,8 +409,8 @@
     <string name="pref__clipboard__max_history_size__label">Максимален брой елементи</string>
     <string name="pref__unit_items">" елемента"</string>
     <!-- glide strings -->
-    <string name="pref__glide_trail_fade_duration">Време за избледняване на следата</string>
-    <string name="pref__glide_preview_refresh_delay">Опресняване на прегледа</string>
-    <string name="pref__glide__show_preview">Преглед при въвеждане чрез плъзгане</string>
-    <string name="pref__glide_trail_max_length">Максимална дължина на следата</string>
+    <string name="pref__glide__trail_fade_duration__label">Време за избледняване на следата</string>
+    <string name="pref__glide__preview_refresh_delay__label">Опресняване на прегледа</string>
+    <string name="pref__glide__show_preview__label">Преглед при въвеждане чрез плъзгане</string>
+    <string name="pref__glide__trail_max_length__label">Максимална дължина на следата</string>
 </resources>

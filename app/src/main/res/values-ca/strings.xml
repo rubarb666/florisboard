@@ -171,7 +171,7 @@
     <string name="pref__keyboard__utility_key_action__switch_keyboard_app" comment="Preference value">Canviar l\'aplicació de teclat</string>
     <string name="pref__keyboard__utility_key_action__dynamic_switch_language_emojis" comment="Preference value">Dinàmic: Canvia a emojis / Canvia d\'idioma</string>
     <string name="pref__keyboard__merge_hint_popups_enabled__label">Mostra també els símbols emergents</string>
-    <string name="pref__keyboard_merge_hint_popups_enabled__summary">Afegeix els símbols emergents a la disposició predeterminada</string>
+    <string name="pref__keyboard__merge_hint_popups_enabled__summary">Afegeix els símbols emergents a la disposició predeterminada</string>
     <string name="pref__keyboard__font_size_multiplier_portrait__label" comment="Preference title">Multiplicador de la mida del tipus de lletra (vertical)</string>
     <string name="pref__keyboard__font_size_multiplier_landscape__label" comment="Preference title">Multiplicador de la mida de la lletra (horitzontal)</string>
     <string name="pref__keyboard__group_layout__label" comment="Preference group title">Disposició</string>

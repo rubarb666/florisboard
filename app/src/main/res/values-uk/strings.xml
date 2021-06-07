@@ -368,8 +368,8 @@
     <string name="pref__clipboard__max_history_size__label">Максимальний розмір історії</string>
     <string name="pref__unit_items">" елементів"</string>
     <!-- glide strings -->
-    <string name="pref__glide_trail_fade_duration">Час зникання безперервного сліду</string>
-    <string name="pref__glide_preview_refresh_delay">Затримка оновлення попереднього перегляду</string>
-    <string name="pref__glide__show_preview">Попередній перегляд під час безперервного вводу</string>
-    <string name="pref__glide_trail_max_length">Максимальна довжина безперервного сліду</string>
+    <string name="pref__glide__trail_fade_duration__label">Час зникання безперервного сліду</string>
+    <string name="pref__glide__preview_refresh_delay__label">Затримка оновлення попереднього перегляду</string>
+    <string name="pref__glide__show_preview__label">Попередній перегляд під час безперервного вводу</string>
+    <string name="pref__glide__trail_max_length__label">Максимальна довжина безперервного сліду</string>
 </resources>

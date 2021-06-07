@@ -170,7 +170,7 @@
     <string name="pref__keyboard__utility_key_action__switch_keyboard_app" comment="Preference value">Cambiar aplicación de teclado</string>
     <string name="pref__keyboard__utility_key_action__dynamic_switch_language_emojis" comment="Preference value">Dinámico: cambiar a emojis / cambiar de idioma</string>
     <string name="pref__keyboard__merge_hint_popups_enabled__label">Mostrar también ventanas emergentes de símbolos</string>
-    <string name="pref__keyboard_merge_hint_popups_enabled__summary">Añadir las ventanas emergentes de símbolos al diseño predeterminado</string>
+    <string name="pref__keyboard__merge_hint_popups_enabled__summary">Añadir las ventanas emergentes de símbolos al diseño predeterminado</string>
     <string name="pref__keyboard__font_size_multiplier_portrait__label" comment="Preference title">Multiplicador del tamaño de la fuente (vertical)</string>
     <string name="pref__keyboard__font_size_multiplier_landscape__label" comment="Preference title">Multiplicador del tamaño de la fuente (horizontal)</string>
     <string name="pref__keyboard__group_layout__label" comment="Preference group title">Distribución</string>
@@ -408,8 +408,8 @@
     <string name="pref__clipboard__max_history_size__label">Tamaño máximo del historial</string>
     <string name="pref__unit_items">" ítems"</string>
     <!-- glide strings -->
-    <string name="pref__glide_trail_fade_duration">Tiempo de desvanecimiento del gesto</string>
-    <string name="pref__glide_preview_refresh_delay">Retraso de actualización de la vista previa</string>
-    <string name="pref__glide__show_preview">Mostrar recorrido del gesto</string>
-    <string name="pref__glide_trail_max_length">Longitud máxima del recorrido del gesto</string>
+    <string name="pref__glide__trail_fade_duration__label">Tiempo de desvanecimiento del gesto</string>
+    <string name="pref__glide__preview_refresh_delay__label">Retraso de actualización de la vista previa</string>
+    <string name="pref__glide__show_preview__label">Mostrar recorrido del gesto</string>
+    <string name="pref__glide__trail_max_length__label">Longitud máxima del recorrido del gesto</string>
 </resources>

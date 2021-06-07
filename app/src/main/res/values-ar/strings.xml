@@ -171,7 +171,7 @@
     <string name="pref__keyboard__utility_key_action__switch_keyboard_app" comment="Preference value">تبديل تطبيق لوحة المفاتيح</string>
     <string name="pref__keyboard__utility_key_action__dynamic_switch_language_emojis" comment="Preference value">ديناميكي: قم بالتبديل إلى الرموز التعبيرية / تبديل اللغة</string>
     <string name="pref__keyboard__merge_hint_popups_enabled__label">عرض ايضا الرموز المنبثقة</string>
-    <string name="pref__keyboard_merge_hint_popups_enabled__summary">أضف النوافذ المنبثقة للرمز إلى التخطيط الافتراضي</string>
+    <string name="pref__keyboard__merge_hint_popups_enabled__summary">أضف النوافذ المنبثقة للرمز إلى التخطيط الافتراضي</string>
     <string name="pref__keyboard__font_size_multiplier_portrait__label" comment="Preference title">مضاعف حجم الخط (عمودي)</string>
     <string name="pref__keyboard__font_size_multiplier_landscape__label" comment="Preference title">مضاعف حجم الخط (أفقي)</string>
     <string name="pref__keyboard__group_layout__label" comment="Preference group title">التخطيط</string>
@@ -413,8 +413,8 @@
     <string name="pref__clipboard__max_history_size__label">الحد الأقصى لحجم السجل</string>
     <string name="pref__unit_items">" عناصر"</string>
     <!-- glide strings -->
-    <string name="pref__glide_trail_fade_duration">وقت تلاشي مسار الانزلاق</string>
-    <string name="pref__glide_preview_refresh_delay">عرض تاخير التحديث</string>
-    <string name="pref__glide__show_preview">عرض المعاينة أثناء الكتابة بالتمرير</string>
-    <string name="pref__glide_trail_max_length">الحد الأقصى لطول مسار الانزلاق</string>
+    <string name="pref__glide__trail_fade_duration__label">وقت تلاشي مسار الانزلاق</string>
+    <string name="pref__glide__preview_refresh_delay__label">عرض تاخير التحديث</string>
+    <string name="pref__glide__show_preview__label">عرض المعاينة أثناء الكتابة بالتمرير</string>
+    <string name="pref__glide__trail_max_length__label">الحد الأقصى لطول مسار الانزلاق</string>
 </resources>

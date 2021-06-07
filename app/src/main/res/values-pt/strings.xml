@@ -171,7 +171,7 @@
     <string name="pref__keyboard__utility_key_action__switch_keyboard_app" comment="Preference value">Mudar a aplicação de teclado</string>
     <string name="pref__keyboard__utility_key_action__dynamic_switch_language_emojis" comment="Preference value">Dinâmica: mudar para emojis / mudar idioma</string>
     <string name="pref__keyboard__merge_hint_popups_enabled__label">Mostrar popup para símbolos</string>
-    <string name="pref__keyboard_merge_hint_popups_enabled__summary">Adicionar popup de símbolos à disposição padrão</string>
+    <string name="pref__keyboard__merge_hint_popups_enabled__summary">Adicionar popup de símbolos à disposição padrão</string>
     <string name="pref__keyboard__font_size_multiplier_portrait__label" comment="Preference title">Multiplicador do tamanho do tipo de letra (vertical)</string>
     <string name="pref__keyboard__font_size_multiplier_landscape__label" comment="Preference title">Multiplicador do tamanho do tipo de letra (horizontal)</string>
     <string name="pref__keyboard__group_layout__label" comment="Preference group title">Disposição</string>
@@ -408,8 +408,8 @@
     <string name="pref__clipboard__max_history_size__label">Tamanho máximo do histórico</string>
     <string name="pref__unit_items">"itens"</string>
     <!-- glide strings -->
-    <string name="pref__glide_trail_fade_duration">Tempo para mostrar o rasto</string>
-    <string name="pref__glide_preview_refresh_delay">Atraso de pré-visualização</string>
-    <string name="pref__glide__show_preview">Mostrar pré-visualização ao escrever com gestos</string>
-    <string name="pref__glide_trail_max_length">Valor máximo para o rasto de deslize</string>
+    <string name="pref__glide__trail_fade_duration__label">Tempo para mostrar o rasto</string>
+    <string name="pref__glide__preview_refresh_delay__label">Atraso de pré-visualização</string>
+    <string name="pref__glide__show_preview__label">Mostrar pré-visualização ao escrever com gestos</string>
+    <string name="pref__glide__trail_max_length__label">Valor máximo para o rasto de deslize</string>
 </resources>

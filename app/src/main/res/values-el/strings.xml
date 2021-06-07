@@ -170,7 +170,7 @@
     <string name="pref__keyboard__utility_key_action__switch_keyboard_app" comment="Preference value">Εναλλαγή εφαρμογής πληκτρολογίου</string>
     <string name="pref__keyboard__utility_key_action__dynamic_switch_language_emojis" comment="Preference value">Δυναμικό: Εναλλαγή σε emojis / Εναλλαγή γλώσσας</string>
     <string name="pref__keyboard__merge_hint_popups_enabled__label">Επιπλέον εμφάνιση αναδυόμενων πλήκτρων συμβόλων</string>
-    <string name="pref__keyboard_merge_hint_popups_enabled__summary">Προσθήκη των αναδυόμενων πλήκτρων συμβόλων στην προεπιλεγμένη διάταξη</string>
+    <string name="pref__keyboard__merge_hint_popups_enabled__summary">Προσθήκη των αναδυόμενων πλήκτρων συμβόλων στην προεπιλεγμένη διάταξη</string>
     <string name="pref__keyboard__font_size_multiplier_portrait__label" comment="Preference title">Πολλαπλασιαστής μεγέθους γραμματοσειράς (πορτραίτο)</string>
     <string name="pref__keyboard__font_size_multiplier_landscape__label" comment="Preference title">Πολλαπλασιαστής μεγέθους γραμματοσειράς (τοπίο)</string>
     <string name="pref__keyboard__group_layout__label" comment="Preference group title">Διάταξη</string>
@@ -408,8 +408,8 @@
     <string name="pref__clipboard__max_history_size__label">Μέγ. μέγεθος ιστορικού</string>
     <string name="pref__unit_items">" στοιχεία"</string>
     <!-- glide strings -->
-    <string name="pref__glide_trail_fade_duration">Διάρκεια εξασθένησης διαδρομής ολίσθησης</string>
-    <string name="pref__glide_preview_refresh_delay">Προεπισκόπηση καθυστέρησης ανανέωσης</string>
-    <string name="pref__glide__show_preview">Εμφάνιση προεπισκόπησης κατά την πληκτρολόγηση με ολίσθηση</string>
-    <string name="pref__glide_trail_max_length">Μέγιστο μήκος διαδρομής ολίσθησης</string>
+    <string name="pref__glide__trail_fade_duration__label">Διάρκεια εξασθένησης διαδρομής ολίσθησης</string>
+    <string name="pref__glide__preview_refresh_delay__label">Προεπισκόπηση καθυστέρησης ανανέωσης</string>
+    <string name="pref__glide__show_preview__label">Εμφάνιση προεπισκόπησης κατά την πληκτρολόγηση με ολίσθηση</string>
+    <string name="pref__glide__trail_max_length__label">Μέγιστο μήκος διαδρομής ολίσθησης</string>
 </resources>

@@ -343,7 +343,7 @@
     <string name="clip__back_to_text_input">Vegere navnîşa nivîsê</string>
     <string name="clip__cant_paste">Ev sepan destûrê nade ku vê naverokê pêve bike.</string>
     <!-- glide strings -->
-    <string name="pref__glide_trail_fade_duration">Şemitîna şopê dema ku diherike</string>
-    <string name="pref__glide_preview_refresh_delay">Pêşdîtin derengketina tazekirinê</string>
-    <string name="pref__glide__show_preview">Di dema tîpkirina şemitînê de pêşdîtinê nîşan bide</string>
+    <string name="pref__glide__trail_fade_duration__label">Şemitîna şopê dema ku diherike</string>
+    <string name="pref__glide__preview_refresh_delay__label">Pêşdîtin derengketina tazekirinê</string>
+    <string name="pref__glide__show_preview__label">Di dema tîpkirina şemitînê de pêşdîtinê nîşan bide</string>
 </resources>

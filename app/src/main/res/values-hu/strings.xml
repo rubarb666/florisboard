@@ -386,8 +386,8 @@
     <string name="pref__clipboard__max_history_size__label">Maximum előzményméret</string>
     <string name="pref__unit_items">" elemek"</string>
     <!-- glide strings -->
-    <string name="pref__glide_trail_fade_duration">Nyomvonal elhalványulási ideje</string>
-    <string name="pref__glide_preview_refresh_delay">Frissítési késleltetés megtekintése</string>
-    <string name="pref__glide__show_preview">Előnézet megjelenítése csúsztatott gépelés közben</string>
-    <string name="pref__glide_trail_max_length">Csúszási nyumvonal maximális hossza</string>
+    <string name="pref__glide__trail_fade_duration__label">Nyomvonal elhalványulási ideje</string>
+    <string name="pref__glide__preview_refresh_delay__label">Frissítési késleltetés megtekintése</string>
+    <string name="pref__glide__show_preview__label">Előnézet megjelenítése csúsztatott gépelés közben</string>
+    <string name="pref__glide__trail_max_length__label">Csúszási nyumvonal maximális hossza</string>
 </resources>
